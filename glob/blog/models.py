@@ -19,7 +19,6 @@ from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from glob.base.blocks import BaseStreamBlock
 
-
 class BlogPeopleRelationship(Orderable, models.Model):
     """
     This defines the relationship between the `People` within the `base`
@@ -158,6 +157,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
 
     # Speficies that only BlogPage objects can live under this index page
     subpage_types = ['BlogPage']
+    fields = ()
 
     # Defines a method to access the children of the page (e.g. BlogPage
     # objects). On the demo site we use this on the HomePage

@@ -6,7 +6,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
-
+from django.conf.urls.i18n import i18n_patterns
 from glob.search import views as search_views
 from .api import api_router
 
@@ -46,6 +46,6 @@ if settings.DEBUG:
         url(r'^test500/$', TemplateView.as_view(template_name='500.html')),
     ]
 
-urlpatterns += [
+urlpatterns += i18n_patterns(
     url(r'', include(wagtail_urls)),
-]
+)
