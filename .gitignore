@@ -1,0 +1,17 @@
+.DS_Store
+*.pyc
+*.log
+*.swp
+*.retry
+.env
+*~
+/logs
+/data
+.~*
+common/CACHE
+__pycache__
+.vagrant/
+/.vagrant/
+/Vagrantfile.local
+!.gitignore
+/env/
