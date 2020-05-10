@@ -16,6 +16,14 @@
                 <h3 class="grid__item-title">{{ blog.title }}</h3>
                 <h4 class="grid__item-number">{{ blog.introduction|truncatewords:15 }}</h4>
                 </a>
+                <div class="small footer">
+                    {% if blog.date_published %}
+                        {{ blog.date_published }} by 
+                    {% endif %}
+                    {% for author in blog.authors %}
+                        {{ author }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </div>
             {% endfor %}
         {% endif %}
     </div>
@@ -23,13 +31,45 @@
 <div class="content">
     {% if posts %}
     {% for blog in posts %}
+
     <div class="content__item">
         <div class="content__item-intro">
             <img class="content__item-img" src="/media/original_images/{{ blog.image }}" alt="{{ image.alt }}" />
             <h2 class="content__item-title">{{ blog.title }}</h2>
+            
         </div>
         <h3 class="content__item-subtitle">{{ blog.introduction }}</h3>
-        <div class="content__item-text"></div>
+        
+
+        <div class="content__item-text">{{ blog.body }}</div>
+        
+        <div class="blog-meta">
+        {% if blog.authors %}
+            <div class="blog-avatars" style="max-width: 800px;margin: 0 auto;">
+                {% for author in blog.authors %}
+                    <div class="author" >
+                    {% image author.image fill-50x50-c100 class="blog-avatar" %}
+                    {{ author.first_name }} {{ author.last_name }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if blog.date_published %}
+            <div class="blog-byline" style="max-width: 800px;margin: 0 auto;">
+                {{ blog.date_published }}
+            </div>
+        {% endif %}
+        </div>
+
+        {% if blog.get_tags %}
+        <div style="max-width: 800px;margin: 0 auto;">
+            Tagged with:
+            {% for tag in blog.get_tags  %}
+                <a href="{{ tag.url }}" class="btn btn-sm">{{ tag }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div><!-- /content__item -->
     {% endfor %}
     {% endif %}

@@ -5,6 +5,24 @@ from wagtail.core.blocks import (
 )
 
 
+CODE_CHOICES = [
+    ('python', 'python'),
+    ('javascript', 'javascript'),
+    ('css', 'css'),
+    ('markup', 'markup')
+]
+
+
+class CodeBlock(StructBlock):
+    language = ChoiceBlock(choices=CODE_CHOICES, default="python")
+    text = TextBlock()
+
+    class Meta:
+        template = "blocks/code_block.html"
+        icon = "openquote"
+        label = "Code Block"
+    
+
 class ImageBlock(StructBlock):
     """
     Custom `StructBlock` for utilizing images with associated caption and
@@ -54,6 +72,7 @@ class BaseStreamBlock(StreamBlock):
     """
     Define the custom blocks that `StreamField` will utilize
     """
+    code_block = CodeBlock()
     heading_block = HeadingBlock()
     paragraph_block = RichTextBlock(
         icon="fa-paragraph",
