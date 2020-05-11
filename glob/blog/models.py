@@ -18,6 +18,7 @@ from wagtail.search import index
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from glob.base.blocks import BaseStreamBlock
+from wagtailtrans.models import TranslatablePage
 
 class BlogPeopleRelationship(Orderable, models.Model):
     """
@@ -47,7 +48,7 @@ class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey('BlogPage', related_name='tagged_items', on_delete=models.CASCADE)
 
 
-class BlogPage(Page):
+class BlogPage(TranslatablePage):
     """
     A Blog Page
 
@@ -129,7 +130,7 @@ class BlogPage(Page):
     subpage_types = []
 
 
-class BlogIndexPage(RoutablePageMixin, Page):
+class BlogIndexPage(RoutablePageMixin, TranslatablePage):
     """
     Index page for blogs.
     We need to alter the page model's context to return the child page objects,

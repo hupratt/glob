@@ -59,9 +59,9 @@ INSTALLED_APPS = [
     'wagtail.contrib.modeladmin',
     'wagtail.contrib.routable_page',
     'wagtail.core',
-    # 'wagtail_modeltranslation',
-    # 'wagtail_modeltranslation.makemigrations',
-    # 'wagtail_modeltranslation.migrate',
+
+    'wagtail.contrib.settings',  # Only required when WAGTAILTRANS_LANGUAGES_PER_SITE=True
+    'wagtailtrans',
     
     'rest_framework',
     'modelcluster',
@@ -81,7 +81,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    'wagtail.core.middleware.SiteMiddleware',
+    'wagtailtrans.middleware.TranslationMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -110,6 +111,8 @@ TEMPLATES = [
         },
     },
 ]
+
+WAGTAILTRANS_SYNC_TREE = True
 
 WSGI_APPLICATION = 'glob.wsgi.application'
 

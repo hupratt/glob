@@ -46,6 +46,6 @@ if settings.DEBUG:
         url(r'^test500/$', TemplateView.as_view(template_name='500.html')),
     ]
 
-urlpatterns += i18n_patterns(
-    url(r'', include(wagtail_urls)),
-)
+urlpatterns += [
+    url(r'', include(wagtail_urls))
+]
