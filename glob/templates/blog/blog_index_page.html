@@ -71,10 +71,13 @@
             {% endfor %}
         </div>
         {% endif %}
+        {% if blog.comments %}
+        <div style="max-width: 800px;margin: 0 auto;">
+        </div>
+        {% endif %}
     </div><!-- /content__item -->
     {% endfor %}
     {% endif %}
-
     <button class="content__close">Close</button>
     <svg class="content__indicator icon icon--caret"><use xlink:href="#icon-caret"></use></svg>
 </div>

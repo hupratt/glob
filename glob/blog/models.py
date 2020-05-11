@@ -8,11 +8,12 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 
 from taggit.models import Tag, TaggedItemBase
+from glob.comment.models import Comment
 
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
 from wagtail.core.fields import StreamField
-from wagtail.core.models import Page, Orderable
+from wagtail.core.models import Page, Orderable, PageManager, PageQuerySet
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
@@ -121,6 +122,15 @@ class BlogPage(TranslatablePage):
                 tag.slug
             ])
         return tags
+
+    @property
+    def comments(self):
+        """
+        Similar to the authors function above we're returning all the comments that
+        are related to the blog post into a list we can access on the template.
+        """
+        return Comment.objects.filter_by_instance(object_id=self.id)
+
 
     # Specifies parent to BlogPage as being BlogIndexPages
     parent_page_types = ['BlogIndexPage']
