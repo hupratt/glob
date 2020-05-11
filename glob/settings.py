@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'glob.breads',
     'glob.locations',
     'glob.search',
+    'glob.comment',
 
     'wagtail.contrib.search_promotions',
     'wagtail.contrib.forms',

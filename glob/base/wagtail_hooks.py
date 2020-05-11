@@ -3,6 +3,7 @@ from wagtail.contrib.modeladmin.options import (
 
 from glob.breads.models import Country, BreadIngredient, BreadType
 from glob.base.models import People, FooterText
+from glob.comment.models import Comment
 
 '''
 N.B. To see what icons are available for use in Wagtail menus and StreamField block types,
@@ -65,8 +66,20 @@ class BakeryModelAdminGroup(ModelAdminGroup):
     menu_order = 300  # will put in 4th place (000 being 1st, 100 2nd)
     items = (PeopleModelAdmin, FooterTextAdmin)
 
+class CommentModelAdmin(ModelAdmin):
+    list_display = ['user','content_type','object_id','timestamp','content']
+    model = Comment
+    menu_label = "Comments"
+    menu_icon = "placeholder"
+    menu_order=290
+    add_to_settings_menu=False
+    exclude_from_explorer = False
+
+
+
 
 # When using a ModelAdminGroup class to group several ModelAdmin classes together,
 # you only need to register the ModelAdminGroup class with Wagtail:
 modeladmin_register(BreadModelAdminGroup)
 modeladmin_register(BakeryModelAdminGroup)
+modeladmin_register(CommentModelAdmin)
