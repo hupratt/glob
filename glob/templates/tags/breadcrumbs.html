@@ -1,7 +1,7 @@
 {% load wagtailcore_tags %}
 
 
-<nav class="breadcrumb-container" aria-label="breadcrumb" role="navigation">
+<nav class="breadcrumb-container" style='margin-top: 20px;' aria-label="breadcrumb" role="navigation">
   <div class="container">
       <div class="row">
           <div class="col-lg-12">
@@ -18,6 +18,11 @@
                       <li><a href="{% pageurl ancestor %}" aria-level="{% cycle 1 2 3 4 5 %}">{{ ancestor }}</a></li>  
                     {% endif %}
                   {% endfor %}
+                  <form class="form-horizontal" style="float:right;top:-6px;position:relative;">
+                    <div class="form-group">
+                      <div class="flagstrap" data-input-name="country"></div>
+                    </div>
+                  </form>
               </ol>
             {% endif %}
           </div>
