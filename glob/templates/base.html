@@ -8,6 +8,10 @@
     {% include "includes/messages.html" %}
 {% endblock messages %}
 
+{% block language-select %}
+
+{% endblock language-select %}
+
 
 {% block breadcrumbs %}
     {# breadcrumbs is defined in base/templatetags/navigation_tags.py #}
@@ -35,6 +39,9 @@
     <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
     <script src="{% static 'js/charming.min.js' %}"></script>
     <script src="{% static 'js/TweenMax.min.js' %}"></script>
+    <script src="{% static 'js/jquery.flagstrap.min.js'%}"></script>
+    <script src="{% static 'js/builddropdown.js'%}"></script>
+
     <script src="{% static 'js/prism.js' %}"></script>
     <script src="{% static 'js/demo.js' %}"></script>
 </body>
