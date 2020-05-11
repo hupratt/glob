@@ -129,7 +129,7 @@ class BlogPage(TranslatablePage):
         Similar to the authors function above we're returning all the comments that
         are related to the blog post into a list we can access on the template.
         """
-        return Comment.objects.filter_by_instance(object_id=self.id)
+        return Comment.objects.filter_by_instance(object_id=self.id, content_type=TranslatablePage)
 
 
     # Specifies parent to BlogPage as being BlogIndexPages

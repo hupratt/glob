@@ -8,7 +8,13 @@
 
 <div class="grid-wrap">
     <div class="grid">
+            {% if blog.comments %}
+            {% for comment in blog.comments  %}
+            {{ comment.content }}
+            {% endfor %}
+        {% endif %}
         {% if posts %}
+        
             {% for blog in posts %}
                 <a href="#" class="grid__item">
                 <div class="grid__item-bg"></div>
@@ -72,8 +78,15 @@
         </div>
         {% endif %}
         {% if blog.comments %}
-        <div style="max-width: 800px;margin: 0 auto;">
-        </div>
+            {% for comment in blog.comments  %}
+            <div class="blog-avatars" style="max-width: 800px;margin: 0 auto;">
+                <div class="author" >
+                {% image comment.user.image fill-50x50-c100 class="blog-avatar" %}
+                {{ comment.user.first_name }} {{ comment.user.last_name }}
+                {{ comment.content }}
+                </div>
+            </div>
+            {% endfor %}
         {% endif %}
     </div><!-- /content__item -->
     {% endfor %}
