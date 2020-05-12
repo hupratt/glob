@@ -92,7 +92,7 @@
 
     <div class="comments-area">
         <h4>{{ blog.comment_count }} Comments</h4>
-
+        
         <form action="/addcomment/" method="post" enctype="multipart/form-data" >
             {% csrf_token %}
             <label for="comment-form-content">Comment this</label>
@@ -101,33 +101,75 @@
             <button>Submit</button>
         </form>
 
+        <div class="comment-list">
         {% for comment in blog.comments  %}
+            <div class="single-comment justify-content-between d-flex">
+                <div class="user justify-content-between d-flex">
+                <div class="thumb">
+                {% image comment.user.image fill-50x50-c100 class="blog-avatar" %}
+                </div>
+                 <div class="desc">
+                <p class="comment">
+                {{ comment.content }}
+                </p>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <h5>
+                            <a href="#">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
+                        </h5>
+                        <p class="date">{{ comment.created }} </p>
+                        </div>
+                        <div class="reply-btn">
+                            <a href="#" class="btn-reply text-uppercase">reply</a>
+                            <form action="/addcommentofcomment/" method="post" enctype="multipart/form-data" >
+                                {% csrf_token %}
+                                <label for="comment-form-content">Comment this</label>
+                                <input type="hidden" name='obj' value='{{ comment.pk }}'/>
+                                <input type="text" id="comment-form-content" name='content' required="required"/>
+                                <button>Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        {% for subcomment in comment.get_subcomments  %}
         <div class="comment-list">
             <div class="single-comment justify-content-between d-flex">
-            <div class="user justify-content-between d-flex">
-            <div class="thumb">
-            {% image comment.user.image fill-50x50-c100 class="blog-avatar" %}
-            </div>
-            <div class="desc">
-            <p class="comment">
-            {{ comment.content }}
-            </p>
-            <div class="d-flex justify-content-between">
-                <div class="d-flex align-items-center">
-                <h5>
-                <a href="#">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
-                </h5>
-                    <p class="date">{{ comment.created }} </p>
-                    </div>
+                <div class="user justify-content-between d-flex">
+                <div class="thumb">
+                {% image comment.user.image fill-50x50-c100 class="blog-avatar" %}
+                </div>
+                <div class="desc">
+                <p class="comment">
+                {{ subcomment.content }}
+                </p>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <h5>
+                            <a href="#">{{ subcomment.user.first_name }} {{ subcomment.user.last_name }}</a>
+                        </h5>
+                        <p class="date">{{ subcomment.created }} </p>
+                        </div>
                         <div class="reply-btn">
-                        <a href="#" class="btn-reply text-uppercase">reply</a>
+                            <a href="#" class="btn-reply text-uppercase">reply</a>
+                            <form action="/addcommentofcomment/" method="post" enctype="multipart/form-data" >
+                                {% csrf_token %}
+                                <label for="comment-form-content">Comment this</label>
+                                <input type="hidden" name='obj' value='{{ subcomment.pk }}'/>
+                                <input type="text" id="comment-form-content" name='content' required="required"/>
+                                <button>Submit</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
+        {% endfor %}
     </div>
-    {% endfor %}
+    
     </div>
     </div><!-- /content__item -->
     {% endfor %}

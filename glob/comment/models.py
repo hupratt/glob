@@ -54,5 +54,14 @@ class Comment(models.Model):
         import pdb; pdb.set_trace()
         return user_comment
 
+    @property
+    def get_subcomments(self):
+        """
+        Similar to the authors function above we're returning all the comments that
+        are related to the blog post into a list we can access on the template.
+        """
+        sub_comments = Comment.objects.filter_by_instance(object_id=self.id, content_type=Comment)
+        if sub_comments.exists():
+            return sub_comments
     class Meta:
         ordering = ['timestamp']

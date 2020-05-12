@@ -9,7 +9,8 @@ from wagtail.core import urls as wagtail_urls
 from django.conf.urls.i18n import i18n_patterns
 from glob.search import views as search_views
 from .api import api_router
-from .views import add_comment
+from .views import add_comment, add_comment_of_comment
+from django.urls import include, path
 
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
@@ -22,6 +23,7 @@ urlpatterns = [
     url(r'^sitemap\.xml$', sitemap),
     url(r'^api/v2/', api_router.urls),
     url(r'^addcomment/$', add_comment, name='add-comment'),
+    url(r'^addcommentofcomment/$', add_comment_of_comment, name='add-comment-of-comment'),
 ]
 
 
@@ -49,5 +51,5 @@ if settings.DEBUG:
     ]
 
 urlpatterns += i18n_patterns(
-    url(r'', include(wagtail_urls)), prefix_default_language=True
+    path('', include(wagtail_urls)), prefix_default_language=True
 )
