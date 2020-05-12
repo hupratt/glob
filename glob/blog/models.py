@@ -76,7 +76,10 @@ class BlogPage(TranslatablePage):
     date_published = models.DateField(
         "Date article published", blank=True, null=True
     )
-
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+    created = models.DateTimeField(
+        auto_now_add=True, help_text="(automatic) created date"
+    )
     content_panels = Page.content_panels + [
         FieldPanel('subtitle', classname="full"),
         FieldPanel('introduction', classname="full"),

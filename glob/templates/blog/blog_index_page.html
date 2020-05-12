@@ -8,13 +8,7 @@
 
 <div class="grid-wrap">
     <div class="grid">
-            {% if blog.comments %}
-            {% for comment in blog.comments  %}
-            {{ comment.content }}
-            {% endfor %}
-        {% endif %}
         {% if posts %}
-        
             {% for blog in posts %}
                 <a href="#" class="grid__item">
                 <div class="grid__item-bg"></div>
@@ -52,19 +46,42 @@
         
         <div class="blog-meta">
         {% if blog.authors %}
-            <div class="blog-avatars" style="max-width: 800px;margin: 0 auto;">
-                {% for author in blog.authors %}
-                    <div class="author" >
-                    {% image author.image fill-50x50-c100 class="blog-avatar" %}
-                    {{ author.first_name }} {{ author.last_name }}
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
+        {% for author in blog.authors %}
+               <div class="author comments-area">
+                  <div class="author comment-list">
+                     <div class="single-comment justify-content-between d-flex">
+                        <div class="user justify-content-between d-flex">
+                           <div class="thumb">
+                           {% for author in blog.authors %}
+                              {% image author.image fill-50x50-c100 class="blog-avatar" %}
+                            {% endfor %}
+                           </div>
+                           <div class="desc">
+                              <div class="d-flex justify-content-between">
+                                 <div class="d-flex align-items-center">
+                                    <h5>
+                                       <a href="#">{{ author.first_name }} {{ author.last_name }} </a>
+                                    </h5>
+                                    <p class="date">
+                                        {% if blog.date_published %}
+                                        <div class="blog-byline" style="max-width: 800px;margin: 0 auto;">
+                                        Published on: {{ blog.date_published }}
+                                        </div>
+                                        {% endif %}
+                                     </p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               {% endfor %}
+               {% endif %}
 
         {% if blog.date_published %}
             <div class="blog-byline" style="max-width: 800px;margin: 0 auto;">
-                {{ blog.date_published }}
+                Published on: {{ blog.date_published }}
             </div>
         {% endif %}
         </div>
@@ -79,15 +96,104 @@
         {% endif %}
         {% if blog.comments %}
             {% for comment in blog.comments  %}
+
             <div class="blog-avatars" style="max-width: 800px;margin: 0 auto;">
+
                 <div class="author" >
                 {% image comment.user.image fill-50x50-c100 class="blog-avatar" %}
                 {{ comment.user.first_name }} {{ comment.user.last_name }}
-                {{ comment.content }}
+                {{ comment.content }} | Written:
+                {{ comment.created }}
                 </div>
             </div>
             {% endfor %}
         {% endif %}
+               <div class="comments-area">
+                  <h4>05 Comments</h4>
+                  <div class="comment-list">
+                     <div class="single-comment justify-content-between d-flex">
+                        <div class="user justify-content-between d-flex">
+                           <div class="thumb">
+                           {% for author in blog.authors %}
+                              {% image author.image fill-50x50-c100 class="blog-avatar" %}
+                            {% endfor %}
+                           </div>
+                           <div class="desc">
+                              <p class="comment">
+                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
+                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
+                              </p>
+                              <div class="d-flex justify-content-between">
+                                 <div class="d-flex align-items-center">
+                                    <h5>
+                                       <a href="#">Emilly Blunt</a>
+                                    </h5>
+                                    <p class="date">December 4, 2017 at 3:12 pm </p>
+                                 </div>
+                                 <div class="reply-btn">
+                                    <a href="#" class="btn-reply text-uppercase">reply</a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="comment-list">
+                     <div class="single-comment justify-content-between d-flex">
+                        <div class="user justify-content-between d-flex">
+                           <div class="thumb">
+                       {% for author in blog.authors %}
+                              {% image author.image fill-50x50-c100 class="blog-avatar" %}
+                            {% endfor %}
+                           </div>
+                           <div class="desc">
+                              <p class="comment">
+                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
+                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
+                              </p>
+                              <div class="d-flex justify-content-between">
+                                 <div class="d-flex align-items-center">
+                                    <h5>
+                                       <a href="#">Emilly Blunt</a>
+                                    </h5>
+                                    <p class="date">December 4, 2017 at 3:12 pm </p>
+                                 </div>
+                                 <div class="reply-btn">
+                                    <a href="#" class="btn-reply text-uppercase">reply</a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="comment-list">
+                     <div class="single-comment justify-content-between d-flex">
+                        <div class="user justify-content-between d-flex">
+                           <div class="thumb">
+                       {% for author in blog.authors %}
+                              {% image author.image fill-50x50-c100 class="blog-avatar" %}
+                            {% endfor %}                           </div>
+                           <div class="desc">
+                              <p class="comment">
+                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
+                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
+                              </p>
+                              <div class="d-flex justify-content-between">
+                                 <div class="d-flex align-items-center">
+                                    <h5>
+                                       <a href="#">Emilly Blunt</a>
+                                    </h5>
+                                    <p class="date">December 4, 2017 at 3:12 pm </p>
+                                 </div>
+                                 <div class="reply-btn">
+                                    <a href="#" class="btn-reply text-uppercase">reply</a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
     </div><!-- /content__item -->
     {% endfor %}
     {% endif %}
