@@ -68,6 +68,10 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
     'wagtailfontawesome',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -76,8 +80,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
+    'django.contrib.sites',
 ]
 
+SITE_ID=2
+LOGIN_REDIRECT_URL = "/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -112,6 +119,14 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 WAGTAILTRANS_SYNC_TREE = True
 

@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^api/v2/', api_router.urls),
     url(r'^addcomment/$', add_comment, name='add-comment'),
     url(r'^addcommentofcomment/$', add_comment_of_comment, name='add-comment-of-comment'),
+    path("accounts/", include("allauth.urls")),
 ]
 
 

@@ -4,7 +4,7 @@ from django.db import models
 
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-
+from django.db.models.signals import post_save
 from wagtail.admin.edit_handlers import (
     FieldPanel,
     FieldRowPanel,
