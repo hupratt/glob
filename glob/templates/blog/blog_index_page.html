@@ -58,14 +58,14 @@
                            </div>
                            <div class="desc">
                               <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
+                                 <div class="d-flex align-items-center" style="margin-top:5px;">
                                     <h5>
                                        <a href="#">{{ author.first_name }} {{ author.last_name }} </a>
                                     </h5>
                                     <p class="date">
                                         {% if blog.date_published %}
-                                        <div class="blog-byline" style="max-width: 800px;margin: 0 auto;">
-                                        Published on: {{ blog.date_published }}
+                                        <div class="date">
+                                        {{ blog.date_published }}
                                         </div>
                                         {% endif %}
                                      </p>
@@ -79,121 +79,53 @@
                {% endfor %}
                {% endif %}
 
-        {% if blog.date_published %}
-            <div class="blog-byline" style="max-width: 800px;margin: 0 auto;">
-                Published on: {{ blog.date_published }}
+        </div>
+
+    {% if blog.get_tags %}
+    <div style="max-width: 800px;margin: 0 auto;">
+        Tagged with:
+        {% for tag in blog.get_tags  %}
+            <a href="{{ tag.url }}" class="btn btn-sm">{{ tag }}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="comments-area">
+        <h4>{{ blog.comment_count }} Comments</h4>
+        <form action="/addcomment/" method="post">
+         {% csrf_token %}
+        <label for="form-comment-content">Enter your comment: </label>
+        <input type="text" id="form-comment-content"></input>
+        <button>Submit</button
+        </form>
+        {% for comment in blog.comments  %}
+        <div class="comment-list">
+            <div class="single-comment justify-content-between d-flex">
+            <div class="user justify-content-between d-flex">
+            <div class="thumb">
+            {% image comment.user.image fill-50x50-c100 class="blog-avatar" %}
             </div>
-        {% endif %}
-        </div>
-
-        {% if blog.get_tags %}
-        <div style="max-width: 800px;margin: 0 auto;">
-            Tagged with:
-            {% for tag in blog.get_tags  %}
-                <a href="{{ tag.url }}" class="btn btn-sm">{{ tag }}</a>
-            {% endfor %}
-        </div>
-        {% endif %}
-        {% if blog.comments %}
-            {% for comment in blog.comments  %}
-
-            <div class="blog-avatars" style="max-width: 800px;margin: 0 auto;">
-
-                <div class="author" >
-                {% image comment.user.image fill-50x50-c100 class="blog-avatar" %}
-                {{ comment.user.first_name }} {{ comment.user.last_name }}
-                {{ comment.content }} | Written:
-                {{ comment.created }}
+            <div class="desc">
+            <p class="comment">
+            {{ comment.content }}
+            </p>
+            <div class="d-flex justify-content-between">
+                <div class="d-flex align-items-center">
+                <h5>
+                <a href="#">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
+                </h5>
+                    <p class="date">{{ comment.created }} </p>
+                    </div>
+                        <div class="reply-btn">
+                        <a href="#" class="btn-reply text-uppercase">reply</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            {% endfor %}
-        {% endif %}
-               <div class="comments-area">
-                  <h4>05 Comments</h4>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                           {% for author in blog.authors %}
-                              {% image author.image fill-50x50-c100 class="blog-avatar" %}
-                            {% endfor %}
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                       {% for author in blog.authors %}
-                              {% image author.image fill-50x50-c100 class="blog-avatar" %}
-                            {% endfor %}
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                       {% for author in blog.authors %}
-                              {% image author.image fill-50x50-c100 class="blog-avatar" %}
-                            {% endfor %}                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
     </div><!-- /content__item -->
     {% endfor %}
     {% endif %}

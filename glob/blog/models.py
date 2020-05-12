@@ -133,6 +133,10 @@ class BlogPage(TranslatablePage):
         are related to the blog post into a list we can access on the template.
         """
         return Comment.objects.filter_by_instance(object_id=self.id, content_type=TranslatablePage)
+    
+    @property
+    def comment_count(self):
+        return self.comments.count()
 
 
     # Specifies parent to BlogPage as being BlogIndexPages

@@ -76,7 +76,12 @@ class BaseStreamBlock(StreamBlock):
     heading_block = HeadingBlock()
     paragraph_block = RichTextBlock(
         icon="fa-paragraph",
-        template="blocks/paragraph_block.html"
+        template="blocks/paragraph_block.html",
+    )
+    paragraph_dev_block = RichTextBlock(
+        icon="fa-paragraph",
+        template="blocks/paragraph_block.html",
+        features=['h2', 'h3', 'bold', 'italic', 'link', 'code', 'superscript', 'subscript', 'strikethrough']
     )
     image_block = ImageBlock()
     block_quote = BlockQuote()

@@ -5,6 +5,11 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 	box-sizing: border-box;
 }
 
+
+hr {
+	border-top: 1px solid #d5d5d5;
+}
+
 body {
 	--color-text: #2a3f89;
     --color-bg: #e8e8e8;
@@ -449,18 +454,28 @@ main {
     display: flex!important
 }
 
+.blog-meta {
+	text-align: justify;
+max-width: 1000px;
+margin: 0 auto;
+}
+
 .comments-area {
 	background: transparent;
 	border-top: 1px solid #eee;
 	padding: 45px 0;
 	margin-top: 50px;
+	text-align: justify;
+	max-width: 1000px;
+	margin: 0 auto;
   }
   
 @media (max-width: 414px) {
 /* line 1314, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
-.comments-area {
-	padding: 50px 8px;
-}
+	.comments-area {
+		padding: 50px 8px;
+
+	}
 }
 
 /* line 1325, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
@@ -648,3 +663,9 @@ font-size: 13px;
 color: #777;
 }
 
+.reply-btn{
+	margin-top: 5px;
+}
+.date{
+	margin-top: 9.5px;
+}
