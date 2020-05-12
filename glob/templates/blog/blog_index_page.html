@@ -92,12 +92,15 @@
 
     <div class="comments-area">
         <h4>{{ blog.comment_count }} Comments</h4>
-        <form action="/addcomment/" method="post">
-         {% csrf_token %}
-        <label for="form-comment-content">Enter your comment: </label>
-        <input type="text" id="form-comment-content"></input>
-        <button>Submit</button
+
+        <form action="/addcomment/" method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
+            <label for="comment-form-content">Comment this</label>
+            <input type="hidden" name='obj' value='{{ blog.pk }}'/>
+            <input type="text" id="comment-form-content" name='content' required="required"/>
+            <button>Submit</button>
         </form>
+
         {% for comment in blog.comments  %}
         <div class="comment-list">
             <div class="single-comment justify-content-between d-flex">
