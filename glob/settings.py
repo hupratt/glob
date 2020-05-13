@@ -253,3 +253,5 @@ if "GS_BUCKET_NAME" in os.environ:
     INSTALLED_APPS.append("storages")
     DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 
+SESSION_COOKIE_SAMESITE = "Strict"
+LANGUAGE_COOKIE_SAMESITE = "Strict"

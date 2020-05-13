@@ -17,3 +17,5 @@ __pycache__
 /env/
 .env.development
 node_modules
+.mypy_cache/
+/glob/frontend/static/frontend/main.js

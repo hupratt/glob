@@ -1,22 +1,11 @@
 {
-    "python.pythonPath": "env/bin/python3.6",
     "editor.formatOnSave": true,
-    "python.linting.pycodestyleEnabled": false,
-    "python.linting.pylintPath": "pylint",
-    "python.linting.pylintArgs": [
-        "--load-plugins",
-        "pylint_django"
-    ],
-    "python.linting.pylintEnabled": false,
-    "python.venvPath": "${workspaceFolder}/bin/python3.6",
-    "python.linting.pycodestyleArgs": [
-        "--ignore=E501"
-    ],
     "files.exclude": {
         "**/*.pyc": true
     },
     "python.formatting.provider": "black",
-    "python.linting.mypyEnabled": false,
+    "python.linting.mypyEnabled": true,
     "python.linting.enabled": true,
-    // "mypy.executable": "/home/ubuntu/Dev/ecom/bin/mypy",
+    "mypy.executable": "/home/ubuntu/Dev/glob/bin/mypy",
+    "python.pythonPath": "env/bin/python",
 }

@@ -5,11 +5,11 @@ import { connect } from "react-redux";
 import * as actions from "./actions/auth";
 import "semantic-ui-css/semantic.min.css";
 import { CSSTransition } from "react-transition-group";
-import BlogHome from './components/blog-home'
-import BlogPost from './components/blog-post'
+import BlogHome from "./components/blog-home";
+import BlogPost from "./components/blog-post";
+import { Route } from "react-router";
 
 class App extends Component {
-
   render() {
     return (
       // i18n translations might still be loaded by the xhr backend
@@ -20,10 +20,10 @@ class App extends Component {
         </CSSTransition>
         <Router>
           <div>
-              <Route exact path="/" component={BlogHome}/>
-              <Route path="/category/:category" component={BlogHome}/>
-              <Route path="/tag/:tag" component={BlogHome}/>
-              <Route path="/post/:id" component={BlogPost}/>
+            <Route exact path="/" component={BlogHome} />
+            <Route path="/category/:category" component={BlogHome} />
+            <Route path="/tag/:tag" component={BlogHome} />
+            <Route path="/post/:id" component={BlogPost} />
           </div>
         </Router>
       </Suspense>
