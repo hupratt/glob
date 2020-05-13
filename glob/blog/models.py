@@ -140,11 +140,11 @@ class BlogPage(TranslatablePage):
 
 
     # Specifies parent to BlogPage as being BlogIndexPages
-    parent_page_types = ['BlogIndexPage']
+    parent_page_types = ['BlogIndexPage','BlogPage']
 
     # Specifies what content types can exist as children of BlogPage.
     # Empty list means that no child content types are allowed.
-    subpage_types = []
+    subpage_types = ['BlogPage']
 
 
 class BlogIndexPage(RoutablePageMixin, TranslatablePage):

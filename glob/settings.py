@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'glob.locations',
     'glob.search',
     'glob.comment',
+    'glob.experiments',
 
     'wagtail.contrib.search_promotions',
     'wagtail.contrib.forms',
@@ -250,11 +251,8 @@ LOGGING = {
             'handlers': ['file', 'console'], 
             'propagate': True,
         },
-
     },
 }
-
-print(os.path.join(BASE_DIR,'error.log'))
 
 
 if 'AWS_STORAGE_BUCKET_NAME' in os.environ:

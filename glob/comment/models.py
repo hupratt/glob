@@ -51,7 +51,6 @@ class Comment(models.Model):
         are related to the blog post into a list we can access on the template.
         """
         user_comment = self.user
-        import pdb; pdb.set_trace()
         return user_comment
 
     @property
