@@ -176,7 +176,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "Europe/Luxembourg"
 
 USE_I18N = True
 
@@ -222,28 +222,39 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-        'console': {
+        'verbose': {
             'format': '%(levelname)s %(asctime)s %(name)s.%(funcName)s:%(lineno)s- %(message)s'
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
         },
     },
     'handlers': {
         'console': {
+            'level': 'INFO',
             'class': 'logging.StreamHandler',
+            'formatter': 'simple',
         },
         'file': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR,'error.log'),
+            'formatter': 'verbose'
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'file'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            # output logs to the console and to the file
+            'level': 'INFO',
+            'handlers': ['file', 'console'], 
+            'propagate': True,
         },
 
     },
 }
+
+print(os.path.join(BASE_DIR,'error.log'))
 
 
 if 'AWS_STORAGE_BUCKET_NAME' in os.environ:

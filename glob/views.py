@@ -13,7 +13,11 @@ from glob.base.models import People
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+# import the logging library
+import logging
 
+# Get an instance of a logger
+logger = logging.getLogger('django')
 
 def add_comment(request):
     content_type = ContentType.objects.get_for_model(TranslatablePage)
@@ -34,6 +38,7 @@ def add_comment(request):
             form = AddCommentForm(initial={'content': '',})
     else:
         messages.add_message(request, messages.ERROR, _('No authentification found: please login to post a comment'))
+        logger.error('No authentification')
         return HttpResponseRedirect(('/'))
 
     return render(request, 'blog/blog_index_page.html')
