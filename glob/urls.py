@@ -11,20 +11,22 @@ from glob.search import views as search_views
 from .api import api_router
 from .views import add_comment, add_comment_of_comment, page_redirect
 from django.urls import include, path
+from glob.blog import urls as blog_urls
 
 urlpatterns = [
-    url(r'^$', page_redirect, name='index'),
-    url(r'^django-admin/', admin.site.urls),
-
-    url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
-
-    url(r'^search/$', search_views.search, name='search'),
-
-    url(r'^sitemap\.xml$', sitemap),
-    url(r'^api/v2/', api_router.urls),
-    url(r'^addcomment/$', add_comment, name='add-comment'),
-    url(r'^addcommentofcomment/$', add_comment_of_comment, name='add-comment-of-comment'),
+    url(r"^$", page_redirect, name="index"),
+    url(r"^django-admin/", admin.site.urls),
+    url(r"^admin/", include(wagtailadmin_urls)),
+    url(r"^documents/", include(wagtaildocs_urls)),
+    url(r"^search/$", search_views.search, name="search"),
+    url(r"^sitemap\.xml$", sitemap),
+    url(r"^api/v2/", api_router.urls),
+    url(r"^addcomment/$", add_comment, name="add-comment"),
+    url(
+        r"^addcommentofcomment/$", add_comment_of_comment, name="add-comment-of-comment"
+    ),
+    path("api-auth/", include("rest_framework.urls")),
+    path("post/", include(blog_urls)),
     path("accounts/", include("allauth.urls")),
 ]
 
@@ -40,20 +42,17 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += [
         url(
-            r'^favicon\.ico$', RedirectView.as_view(
-                url=settings.STATIC_URL + 'img/bread-favicon.ico'
-            )
+            r"^favicon\.ico$",
+            RedirectView.as_view(url=settings.STATIC_URL + "img/bread-favicon.ico"),
         )
     ]
 
     # Add views for testing 404 and 500 templates
     urlpatterns += [
-        url(r'^test404/$', TemplateView.as_view(template_name='404.html')),
-        url(r'^test500/$', TemplateView.as_view(template_name='500.html')),
+        url(r"^test404/$", TemplateView.as_view(template_name="404.html")),
+        url(r"^test500/$", TemplateView.as_view(template_name="500.html")),
     ]
 
 urlpatterns += i18n_patterns(
-     
-    path('', include(wagtail_urls)),
-    prefix_default_language=True
+    path("", include(wagtail_urls)), prefix_default_language=True
 )

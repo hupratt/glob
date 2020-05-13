@@ -1,33 +1,29 @@
 from rest_framework import serializers
 
-from .models import BlogCategory, PostPage, Tag
+from .models import BlogPage
 
 
 class PostPageSerializer(serializers.ModelSerializer):
-
     class Meta:
-        model = PostPage
-        fields = ('id',
-                  'slug',
-                  'title',
-                  )
+        model = BlogPage
+        fields = ("id", "slug", "title")
 
 
-class CategorySerializer(serializers.ModelSerializer):
+# class CategorySerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = BlogCategory
-        fields = ('id',
-                  'slug',
-                  'name',
-                  )
+#     class Meta:
+#         model = BlogCategory
+#         fields = ('id',
+#                   'slug',
+#                   'name',
+#                   )
 
 
-class TagSerializer(serializers.ModelSerializer):
+# class TagSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = Tag
-        fields = ('id',
-                  'slug',
-                  'name',
-                  )
+#     class Meta:
+#         model = Tag
+#         fields = ('id',
+#                   'slug',
+#                   'name',
+#                   )
