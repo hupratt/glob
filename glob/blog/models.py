@@ -204,11 +204,11 @@ class BlogIndexPage(RoutablePageMixin, TranslatablePage):
         context = {"tag": tag, "posts": posts}
         return render(request, "frontend/index.html", context)
 
-    @route(r"^$", name="home")
-    def home(self, request):
-        posts = self.get_posts()
-        context = {"posts": posts}
-        return render(request, "frontend/index.html", context)
+    # @route(r"^$", name="home")
+    # def home(self, request):
+    #     posts = self.get_posts()
+    #     context = {"posts": posts}
+    #     return render(request, "frontend/index.html", context)
 
     def serve_preview(self, request, mode_name):
         # Needed for previews to work

@@ -26,7 +26,7 @@ urlpatterns = [
         r"^addcommentofcomment/$", add_comment_of_comment, name="add-comment-of-comment"
     ),
     path("api-auth/", include("rest_framework.urls")),
-    path("post/", include(blog_urls)),
+    path("blog/", include(blog_urls)),
     path("accounts/", include("allauth.urls")),
 ]
 

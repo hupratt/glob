@@ -11,9 +11,6 @@ class PostPageSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = BlogPage.objects.all()
-        import pdb
-
-        pdb.set_trace()
         # category = self.request.query_params.get("category", None)
         # tag = self.request.query_params.get("tag", None)
         # if category is not None and category != "*":
