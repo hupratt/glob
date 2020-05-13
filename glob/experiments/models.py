@@ -9,16 +9,9 @@ from django.db import models
 from glob.experiments.backends import db
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
+from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel
+from wagtail.core.models import Orderable
 
-try:
-    from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel
-    from wagtail.core.models import Orderable
-except ImportError:  # fallback for Wagtail <2.0
-    from wagtail.wagtailadmin.edit_handlers import FieldPanel, PageChooserPanel, InlinePanel
-    from wagtail.wagtailcore.models import Orderable
-
-
-BACKEND = None
 
 
 class Experiment(ClusterableModel):

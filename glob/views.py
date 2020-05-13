@@ -15,8 +15,10 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 # import the logging library
 import logging
+from django.utils.translation import get_language
+from django.shortcuts import redirect
 
-# Get an instance of a logger
+# Get the instance of the logger specified in the settings file
 logger = logging.getLogger('django')
 
 def add_comment(request):
@@ -66,3 +68,6 @@ def add_comment_of_comment(request):
 
     return render(request, 'blog/blog_index_page.html')
 
+def page_redirect(request):
+    logger.info(f'redirecting to: {get_language()}')
+    return redirect(f'{get_language()}/')

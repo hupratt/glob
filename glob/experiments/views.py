@@ -5,14 +5,8 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import ugettext as _
 from glob.experiments.backends import db
-
-try:
-    from wagtail.admin import messages
-    from wagtail.core.models import Page
-except ImportError:  # fallback for Wagtail <2.0
-    from wagtail.wagtailadmin import messages
-    from wagtail.wagtailcore.models import Page
-
+from wagtail.admin import messages
+from wagtail.core.models import Page
 from .models import Experiment
 from .utils import get_user_id, impersonate_other_page, percentage
 

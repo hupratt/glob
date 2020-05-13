@@ -21,6 +21,7 @@ from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
 from .blocks import BaseStreamBlock
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 
 @register_snippet
@@ -130,7 +131,6 @@ class StandardPage(Page):
         ImageChooserPanel('image'),
     ]
 
-
 class HomePage(Page):
     """
     The Home Page. This looks slightly more complicated than it is. You can
@@ -141,7 +141,6 @@ class HomePage(Page):
     - A promotional area
     - Moveable featured site sections
     """
-
     # Hero section of HomePage
     image = models.ForeignKey(
         'wagtailimages.Image',

@@ -9,10 +9,11 @@ from wagtail.core import urls as wagtail_urls
 from django.conf.urls.i18n import i18n_patterns
 from glob.search import views as search_views
 from .api import api_router
-from .views import add_comment, add_comment_of_comment
+from .views import add_comment, add_comment_of_comment, page_redirect
 from django.urls import include, path
 
 urlpatterns = [
+    url(r'^$', page_redirect, name='index'),
     url(r'^django-admin/', admin.site.urls),
 
     url(r'^admin/', include(wagtailadmin_urls)),
@@ -52,5 +53,7 @@ if settings.DEBUG:
     ]
 
 urlpatterns += i18n_patterns(
-    path('', include(wagtail_urls)), prefix_default_language=True
+     
+    path('', include(wagtail_urls)),
+    prefix_default_language=True
 )

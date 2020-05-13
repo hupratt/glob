@@ -191,7 +191,7 @@ class BlogIndexPage(RoutablePageMixin, TranslatablePage):
             self).live().order_by(
             '-date_published')
         return context
-
+      
     # This defines a Custom view that utilizes Tags. This view will return all
     # related BlogPages for a given Tag or redirect back to the BlogIndexPage.
     # More information on RoutablePages is at
