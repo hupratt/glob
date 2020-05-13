@@ -9,7 +9,7 @@ for (x in labels) {
 		timestamps {
 			node () {
 				
-				def PROJECT="/home/ubuntu/Dev/ecom"
+				def PROJECT="/home/ubuntu/Dev/glob"
 				def PYTHON_P="$PROJECT/bin/python3.6"
 				
 				stage ('Checkout') {
@@ -40,15 +40,15 @@ for (x in labels) {
 					$PYTHON_P -m pip install -r requirements.txt
 					echo 'pip install done'
 					
-					$PYTHON_P ./ecom/manage.py migrate                  
+					$PYTHON_P ./glob/manage.py migrate                  
 					echo 'manage.py migrate done'
 
-					$PYTHON_P ./ecom/manage.py compilemessages --settings=home.settings
+					$PYTHON_P ./glob/manage.py compilemessages --settings=home.settings
 
-					$PYTHON_P ./ecom/manage.py collectstatic --noinput --settings=home.settings
+					$PYTHON_P ./glob/manage.py collectstatic --noinput --settings=home.settings
 					echo 'manage.py collectstatic done'
 
-					$PYTHON_P ./ecom/manage.py check --deploy
+					$PYTHON_P ./glob/manage.py check --deploy
 
 					deactivate 
 

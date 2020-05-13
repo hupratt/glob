@@ -15,3 +15,5 @@ __pycache__
 /Vagrantfile.local
 !.gitignore
 /env/
+.env.development
+node_modules
