@@ -6,6 +6,6 @@
     "python.formatting.provider": "black",
     "python.linting.mypyEnabled": true,
     "python.linting.enabled": true,
-    "mypy.executable": "/home/ubuntu/Dev/glob/bin/mypy",
+    "mypy.executable": "/home/ubuntu/Dev/glob/bin/pyls",
     "python.pythonPath": "env/bin/python",
 }

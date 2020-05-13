@@ -7,7 +7,7 @@ import "semantic-ui-css/semantic.min.css";
 import { CSSTransition } from "react-transition-group";
 import BlogHome from "./components/blog-home";
 import BlogPost from "./components/blog-post";
-import { Route } from "react-router";
+import { Route } from "react-router-dom";
 
 class App extends Component {
   render() {
@@ -19,12 +19,10 @@ class App extends Component {
           <div />
         </CSSTransition>
         <Router>
-          <div>
-            <Route exact path="/" component={BlogHome} />
-            <Route path="/category/:category" component={BlogHome} />
-            <Route path="/tag/:tag" component={BlogHome} />
-            <Route path="/post/:id" component={BlogPost} />
-          </div>
+          <Route exact path="/" component={BlogHome} />
+          <Route path="/category/:category" component={BlogHome} />
+          <Route path="/tag/:tag" component={BlogHome} />
+          <Route path="/post/:id" component={BlogPost} />
         </Router>
       </Suspense>
     );
