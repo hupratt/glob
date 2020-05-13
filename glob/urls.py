@@ -21,12 +21,13 @@ urlpatterns = [
     url(r"^search/$", search_views.search, name="search"),
     url(r"^sitemap\.xml$", sitemap),
     url(r"^api/v2/", api_router.urls),
+    # override api/v2/pages with our customer serializer??
     url(r"^addcomment/$", add_comment, name="add-comment"),
     url(
         r"^addcommentofcomment/$", add_comment_of_comment, name="add-comment-of-comment"
     ),
     path("api-auth/", include("rest_framework.urls")),
-    path("blog/", include(blog_urls)),
+    path("api/blog/", include(blog_urls)),
     path("accounts/", include("allauth.urls")),
 ]
 

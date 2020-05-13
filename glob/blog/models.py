@@ -184,32 +184,6 @@ class BlogIndexPage(RoutablePageMixin, TranslatablePage):
         )
         return context
 
-    # This defines a Custom view that utilizes Tags. This view will return all
-    # related BlogPages for a given Tag or redirect back to the BlogIndexPage.
-    # More information on RoutablePages is at
-    # http://docs.wagtail.io/en/latest/reference/contrib/routablepage.html
-    @route(r"^tags/$", name="tag_archive")
-    @route(r"^tags/([\w-]+)/$", name="tag_archive")
-    def tag_archive(self, request, tag=None):
-
-        try:
-            tag = Tag.objects.get(slug=tag)
-        except Tag.DoesNotExist:
-            if tag:
-                msg = 'There are no blog posts tagged with "{}"'.format(tag)
-                messages.add_message(request, messages.INFO, msg)
-            return redirect(self.url)
-
-        posts = self.get_posts(tag=tag)
-        context = {"tag": tag, "posts": posts}
-        return render(request, "frontend/index.html", context)
-
-    # @route(r"^$", name="home")
-    # def home(self, request):
-    #     posts = self.get_posts()
-    #     context = {"posts": posts}
-    #     return render(request, "frontend/index.html", context)
-
     def serve_preview(self, request, mode_name):
         # Needed for previews to work
         return self.serve(request)

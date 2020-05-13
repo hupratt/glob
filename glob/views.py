@@ -91,5 +91,6 @@ def add_comment_of_comment(request):
 
 
 def page_redirect(request):
-    logger.info(f"redirecting to: {get_language()}")
-    return redirect(f"{get_language()}/")
+    # logger.info(f"redirecting to: {get_language()}")
+    # return redirect(f"{get_language()}/")
+    return render(request, "frontend/index.html")
