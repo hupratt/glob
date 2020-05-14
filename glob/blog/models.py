@@ -84,7 +84,7 @@ class BlogPage(TranslatablePage):
         help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
     )
     body = StreamField(BaseStreamBlock(), verbose_name="Page body", blank=True)
-    subtitle = models.CharField(blank=True, max_length=255)
+    category = models.CharField(blank=True, max_length=255)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     date_published = models.DateField("Date article published", blank=True, null=True)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
@@ -92,7 +92,7 @@ class BlogPage(TranslatablePage):
         auto_now_add=True, help_text="(automatic) created date"
     )
     content_panels = Page.content_panels + [
-        FieldPanel("subtitle", classname="full"),
+        FieldPanel("category", classname="full"),
         FieldPanel("introduction", classname="full"),
         ImageChooserPanel("image"),
         StreamFieldPanel("body"),

@@ -3,12 +3,12 @@ import CategoryWidget from "./category";
 import TagWidget from "./tag";
 import ProfileWidget from "./profile";
 
-const SideBar = () => {
+const SideBar = ({ posts }) => {
   return (
     <div className="col-md-4">
       <ProfileWidget />
-      <CategoryWidget />
-      <TagWidget />
+      <CategoryWidget posts={posts} />
+      <TagWidget posts={posts} />
     </div>
   );
 };

@@ -17,6 +17,5 @@ class PostListView(ListAPIView):
         return self.list(request, *args, **kwargs)
 
     def get_queryset(self):
-        queryset = BlogPage.objects.all()
-        return queryset
+        return BlogPage.objects.all()
 
