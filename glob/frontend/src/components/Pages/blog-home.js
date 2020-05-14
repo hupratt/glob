@@ -1,14 +1,24 @@
 import React from "react";
-import Navigation from "./navigation";
-import Footer from "./footer";
-import PostContainer from "./post-container";
-import SideBar from "./sidebar";
-import { fetchPosts } from "../actions/posts";
-import { fetchCategories } from "../actions/categories";
-import { fetchTags } from "../actions/tags";
+import Navigation from "../Elements/navigation";
+import Footer from "../Elements/footer";
+import SideBar from "../Elements/sidebar";
+import { fetchPosts } from "../../actions/posts";
+import { fetchCategories } from "../../actions/categories";
+import { fetchTags } from "../../actions/tags";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { postListURL, categoryListURL, tagsListURL } from "../constants";
+import { postListURL, categoryListURL, tagsListURL } from "../../constants";
+import PostIntroCard from "../Elements/post-intro-card";
+
+const PostContainer = ({ posts, pageCount }) => {
+  return (
+    <div className="col-md-8">
+      {posts.map((post) => (
+        <PostIntroCard key={post.id} post={post} />
+      ))}
+    </div>
+  );
+};
 
 class BlogHome extends React.Component {
   componentDidMount() {

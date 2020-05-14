@@ -3,9 +3,8 @@ import React from "react";
 const renderTags = (taglist) => {
   let elements = [];
   taglist.map((tag) => {
-    console.log(tag);
     elements.push(
-      <a href="#">
+      <a href="#" key={tag.slug}>
         <span className="badge badge-secondary">{tag.name}</span>
       </a>
     );
@@ -14,7 +13,6 @@ const renderTags = (taglist) => {
 };
 
 const TagWidget = ({ tags }) => {
-  console.log(tags);
   return (
     <div className="card my-4">
       <h5 className="card-header">Tags</h5>

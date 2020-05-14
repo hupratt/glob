@@ -1,7 +1,7 @@
 import React from "react";
-import Navigation from "./navigation";
-import Footer from "./footer";
-import SideBar from "./sidebar";
+import Navigation from "../Elements/navigation";
+import Footer from "../Elements/footer";
+import SideBar from "../Elements/sidebar";
 import PostDetail from "./post-detail";
 
 const BlogPost = (props) => {

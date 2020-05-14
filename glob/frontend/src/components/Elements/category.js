@@ -10,7 +10,7 @@ const CategoryWidget = ({ categories }) => {
           <div className="col-lg-12">
             <ul className="list-unstyled mb-0">
               {categories.map((category) => (
-                <li>
+                <li key={category.slug}>
                   <Link to={`/category/${category.slug}`}>{category.name}</Link>
                 </li>
               ))}

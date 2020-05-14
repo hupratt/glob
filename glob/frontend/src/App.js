@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 
 import "semantic-ui-css/semantic.min.css";
 import { CSSTransition } from "react-transition-group";
-import BlogHome from "./components/blog-home";
-import BlogPost from "./components/blog-post";
+import BlogHome from "./components/Pages/blog-home";
+import BlogPost from "./components/Pages/blog-post";
 import { Route } from "react-router-dom";
 import "../static/frontend/main.css";
 
