@@ -8,6 +8,9 @@ export const mediaEndpoint = `${base}${mediaURL}`;
 export const googleLogin = `${base}/accounts/google/login/`;
 export const facebookLogin = `${base}/accounts/facebook/login/`;
 export const githubLogin = `${base}/accounts/github/login/`;
+
+export const categoryListURL = `${endpoint}/blog/category`;
+export const tagsListURL = `${endpoint}/blog/tag`;
 export const postListURL = (
   offset = 0,
   language = "",

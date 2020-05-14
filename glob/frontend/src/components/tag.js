@@ -1,25 +1,24 @@
 import React from "react";
 
-const renderTags = (posts) => {
+const renderTags = (taglist) => {
   let elements = [];
-  posts.map((post) => {
-    post.string_tags &&
-      post.string_tags.forEach((tag) => {
-        elements.push(
-          <a href="#">
-            <span className="badge badge-secondary">{tag}</span>
-          </a>
-        );
-      });
+  taglist.map((tag) => {
+    console.log(tag);
+    elements.push(
+      <a href="#">
+        <span className="badge badge-secondary">{tag.name}</span>
+      </a>
+    );
   });
   return elements;
 };
 
-const TagWidget = ({ posts }) => {
+const TagWidget = ({ tags }) => {
+  console.log(tags);
   return (
     <div className="card my-4">
       <h5 className="card-header">Tags</h5>
-      <div className="card-body">{renderTags(posts)}</div>
+      <div className="card-body">{renderTags(tags)}</div>
     </div>
   );
 };
