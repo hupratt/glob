@@ -15,12 +15,25 @@ from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPane
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page, Orderable, PageManager, PageQuerySet
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.models import Image
 from wagtail.search import index
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from glob.base.blocks import BaseStreamBlock
 from wagtailtrans.models import TranslatablePage
+from wagtail.api import APIField
+from rest_framework.fields import Field
 
+
+# from glob.blog.serializers import ImageSerializer
+class ImageSerializer(Field):
+    def to_representation(self, value):
+        return {
+            "url":value.file.url,
+            "title": value.title, 
+            "width": value.width, 
+            "height": value.height, 
+        }
 
 class BlogPeopleRelationship(Orderable, models.Model):
     """
@@ -127,6 +140,13 @@ class BlogPage(TranslatablePage):
         return Comment.objects.filter_by_instance(
             object_id=self.id, content_type=TranslatablePage
         )
+    @property
+    def get_image(self):
+        """
+        Similar to the authors function above we're returning the image
+        related to the blog post into a list we can access on the template.
+        """
+        return self.image.file.url
 
     @property
     def comment_count(self):
@@ -138,6 +158,7 @@ class BlogPage(TranslatablePage):
     # Specifies what content types can exist as children of BlogPage.
     # Empty list means that no child content types are allowed.
     subpage_types = ["BlogPage"]
+    api_fields = [APIField("image", serializer=ImageSerializer())]
 
 
 class BlogIndexPage(RoutablePageMixin, TranslatablePage):

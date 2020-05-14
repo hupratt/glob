@@ -13,7 +13,7 @@ class PostContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.getPosts();
+    this.props.fetchPosts(postListURL());
   }
 
   componentDidUpdate(prevProps) {
@@ -21,24 +21,9 @@ class PostContainer extends React.Component {
       prevProps.location.search !== this.props.location.search ||
       prevProps.location.pathname !== this.props.location.pathname
     ) {
-      this.getPosts();
+      this.props.fetchPosts(postListURL());
     }
   }
-
-  getPosts = () => {
-    // let category =
-    //   this.props.match.params.category === undefined
-    //     ? "*"
-    //     : this.props.match.params.category;
-    // let tag =
-    //   this.props.match.params.tag === undefined
-    //     ? "*"
-    //     : this.props.match.params.tag;
-
-    // let offset = (this.getPage() - 1) * this.state.pageStep;
-    console.log(`fetching ${postListURL}`);
-    this.props.fetchPosts(postListURL());
-  };
 
   render() {
     return (

@@ -7,7 +7,6 @@ const initState = {
   posts: [],
   pageCount: 0,
   pageStep: 10,
-  images: null,
   moreloading: false,
   length: 0,
 };
