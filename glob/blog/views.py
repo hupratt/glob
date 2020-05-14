@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from .models import BlogPage
-from .serializers import PostPageSerializer
+from .models import BlogPage, BlogCategory, BlogPageTag, Tag
+from .serializers import PostPageSerializer, CategorySerializer, TagSerializer
 from rest_framework import mixins
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
@@ -19,3 +19,14 @@ class PostListView(ListAPIView):
     def get_queryset(self):
         return BlogPage.objects.all()
 
+
+class TagListView(ListAPIView):
+    serializer_class = TagSerializer
+    queryset = Tag.objects.all()
+    permission_classes = (AllowAny,)
+
+
+class CategoryListView(ListAPIView):
+    serializer_class = CategorySerializer
+    queryset = BlogCategory.objects.all()
+    permission_classes = (AllowAny,)

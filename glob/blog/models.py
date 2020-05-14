@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.contrib import messages
 from django.db import models
 from django.shortcuts import redirect, render
+from django import forms
 
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
@@ -23,13 +24,16 @@ from glob.base.blocks import BaseStreamBlock
 from wagtailtrans.models import TranslatablePage
 from wagtail.api import APIField
 from rest_framework.fields import Field
+from taggit.models import Tag as TaggitTag
+from wagtail.snippets.models import register_snippet
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
 
 
 # from glob.blog.serializers import ImageSerializer
 class ImageSerializer(Field):
     def to_representation(self, value):
         return {
-            "url":value.file.url,
+            "url": value.file.url,
             "title": value.title, 
             "width": value.width, 
             "height": value.height, 
@@ -64,6 +68,22 @@ class BlogPageTag(TaggedItemBase):
         "BlogPage", related_name="tagged_items", on_delete=models.CASCADE
     )
 
+@register_snippet
+class BlogCategory(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, max_length=80)
+
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('slug'),
+    ]
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
 
 class BlogPage(TranslatablePage):
     """
@@ -84,7 +104,7 @@ class BlogPage(TranslatablePage):
         help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
     )
     body = StreamField(BaseStreamBlock(), verbose_name="Page body", blank=True)
-    category = models.CharField(blank=True, max_length=255)
+    categories = ParentalManyToManyField(BlogCategory, blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     date_published = models.DateField("Date article published", blank=True, null=True)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
@@ -92,7 +112,8 @@ class BlogPage(TranslatablePage):
         auto_now_add=True, help_text="(automatic) created date"
     )
     content_panels = Page.content_panels + [
-        FieldPanel("category", classname="full"),
+        FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
+
         FieldPanel("introduction", classname="full"),
         ImageChooserPanel("image"),
         StreamFieldPanel("body"),
@@ -225,3 +246,9 @@ class BlogIndexPage(RoutablePageMixin, TranslatablePage):
             tags += post.get_tags
         tags = sorted(set(tags))
         return tags
+
+
+@register_snippet
+class Tag(TaggitTag):
+    class Meta:
+        proxy = True
