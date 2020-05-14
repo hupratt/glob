@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import queryString from "query-string";
 
-import { PostIntroCard } from "./post-intro-card";
+import PostIntroCard from "./post-intro-card";
 import { Link } from "react-router-dom";
 
 class PostContainer extends React.Component {
@@ -11,9 +11,9 @@ class PostContainer extends React.Component {
     this.state = {
       posts: [],
       pageCount: 0,
-      pageStep: 2,
+      pageStep: 10,
+      images: null,
     };
-    this.getPosts = this.getPosts.bind(this);
   }
 
   getPage() {
@@ -34,7 +34,7 @@ class PostContainer extends React.Component {
     }
   }
 
-  getPosts() {
+  getPosts = () => {
     let category =
       this.props.match.params.category === undefined
         ? "*"
@@ -47,16 +47,18 @@ class PostContainer extends React.Component {
     let offset = (this.getPage() - 1) * this.state.pageStep;
     axios
       .get(
-        `/api/blog/post/?limit=${this.state.pageStep}&offset=${offset}&category=${category}&tag=${tag}`
+        `/api/blog/?limit=${this.state.pageStep}&offset=${offset}&category=${category}&tag=${tag}`
       )
       .then((res) => {
         const posts = res.data.results;
         this.setState({
           posts,
-          pageCount: Math.ceil(parseInt(res.data.count) / this.state.pageStep),
+          pageCount: Math.ceil(
+            parseInt(res.data.results.length) / this.state.pageStep
+          ),
         });
       });
-  }
+  };
 
   render() {
     return (
@@ -100,4 +102,4 @@ class PostContainer extends React.Component {
   }
 }
 
-export { PostContainer };
+export default PostContainer;

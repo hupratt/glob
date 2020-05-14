@@ -8,6 +8,7 @@ import { CSSTransition } from "react-transition-group";
 import BlogHome from "./components/blog-home";
 import BlogPost from "./components/blog-post";
 import { Route } from "react-router-dom";
+import "../static/frontend/main.css";
 
 class App extends Component {
   render() {
@@ -15,8 +16,8 @@ class App extends Component {
       // i18n translations might still be loaded by the xhr backend
       // use react's Suspense
       <Suspense fallback="loading">
-        <CSSTransition in={true} appear classNames="youtube" timeout={100}>
-          <div />
+        <CSSTransition in={true} appear classNames="youtube" timeout={2000}>
+          <div style={{ zIndex: "1000" }} />
         </CSSTransition>
         <Router>
           <Route exact path="/" component={BlogHome} />

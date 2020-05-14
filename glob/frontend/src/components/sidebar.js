@@ -1,18 +1,16 @@
 import React from "react";
-import { CategoryWidget } from "./category";
-import { TagWidget } from "./tag";
-import { ProfileWidget } from "./profile";
+import CategoryWidget from "./category";
+import TagWidget from "./tag";
+import ProfileWidget from "./profile";
 
-class SideBar extends React.Component {
-  render() {
-    return (
-      <div class="col-md-4">
-        <ProfileWidget />
-        <CategoryWidget />
-        <TagWidget />
-      </div>
-    );
-  }
-}
+const SideBar = () => {
+  return (
+    <div className="col-md-4">
+      <ProfileWidget />
+      <CategoryWidget />
+      <TagWidget />
+    </div>
+  );
+};
 
-export { SideBar };
+export default SideBar;

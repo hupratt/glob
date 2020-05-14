@@ -13,8 +13,8 @@ class PostDetail extends React.Component {
   componentDidMount() {
     let pk = this.props.match.params.id;
 
-    axios.get("/api/cms/pages/" + pk + "/").then((res) => {
-      const post = res.data;
+    axios.get("/api/v2/pages/" + pk + "/").then((res) => {
+      const post = res.data.results;
       this.setState({ post, loaded: true });
     });
   }
@@ -24,8 +24,8 @@ class PostDetail extends React.Component {
       const post = this.state.post;
 
       return (
-        <div class="col-md-8">
-          <img src={post.header_image_url.url} class="img-fluid rounded" />
+        <div className="col-md-8">
+          <img src={post.header_image_url.url} className="img-fluid rounded" />
           <hr />
           <h1>{post.title}</h1>
           <hr />
@@ -33,9 +33,9 @@ class PostDetail extends React.Component {
         </div>
       );
     } else {
-      return <div class="col-md-8">Loading...</div>;
+      return <div className="col-md-8">Loading...</div>;
     }
   }
 }
 
-export { PostDetail };
+export default PostDetail;

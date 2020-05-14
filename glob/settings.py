@@ -253,5 +253,15 @@ if "GS_BUCKET_NAME" in os.environ:
     INSTALLED_APPS.append("storages")
     DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 
+
 SESSION_COOKIE_SAMESITE = "Strict"
 LANGUAGE_COOKIE_SAMESITE = "Strict"
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ),
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+}

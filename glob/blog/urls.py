@@ -7,7 +7,8 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 
 # from .api import api_router
-from .api import blog_router
+# from .api import blog_router
+from .views import PostPageSet
 
 
-urlpatterns = [path("", include(blog_router.urls))]
+urlpatterns = [path("", PostPageSet.as_view(), name="post-list")]

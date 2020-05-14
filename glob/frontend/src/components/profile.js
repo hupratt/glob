@@ -1,23 +1,21 @@
 import React from "react";
 
-class ProfileWidget extends React.Component {
-  render() {
-    return (
-      <div class="profile-sidebar">
-        <div class="profile-userpic">
-          <img
-            src="https://blog.michaelyin.info/upload/images/4366781.original.jpg"
-            class="mx-auto d-block"
-            alt=""
-          />
-        </div>
-        <div class="profile-usertitle">
-          <div class="profile-usertitle-name">Michael Yin</div>
-          <div class="profile-usertitle-job">Full Stack Developer</div>
-        </div>
+const ProfileWidget = () => {
+  return (
+    <div className="profile-sidebar">
+      <div className="profile-userpic">
+        <img
+          src="https://avatars2.githubusercontent.com/u/38809698?s=400&u=a10478aa9a5a6709c32eec29f016150d8f5bd242&v=4"
+          className="mx-auto d-block"
+          alt=""
+        />
       </div>
-    );
-  }
-}
+      <div className="profile-usertitle">
+        <div className="profile-usertitle-name">Hugo Pratt</div>
+        <div className="profile-usertitle-job">Tech enthusiast</div>
+      </div>
+    </div>
+  );
+};
 
-export { ProfileWidget };
+export default ProfileWidget;

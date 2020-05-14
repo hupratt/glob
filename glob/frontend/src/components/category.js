@@ -43,4 +43,4 @@ class CategoryWidget extends React.Component {
   }
 }
 
-export { CategoryWidget };
+export default CategoryWidget;

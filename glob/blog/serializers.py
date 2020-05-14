@@ -6,7 +6,7 @@ from .models import BlogPage
 class PostPageSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogPage
-        fields = ("id", "slug", "title")
+        fields = ("id", "slug", "title", "image")
 
 
 # class CategorySerializer(serializers.ModelSerializer):

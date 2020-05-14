@@ -1,24 +1,22 @@
 import React from "react";
-import { Navigation } from "./navigation";
-import { Footer } from "./footer";
-import { SideBar } from "./sidebar";
-import { PostDetail } from "./post-detail";
+import Navigation from "./navigation";
+import Footer from "./footer";
+import SideBar from "./sidebar";
+import PostDetail from "./post-detail";
 
-class BlogPost extends React.Component {
-  render() {
-    return (
-      <div>
-        <Navigation />
-        <div className="container">
-          <div className="row">
-            <PostDetail {...this.props} />
-            <SideBar />
-          </div>
+const BlogPost = (props) => {
+  return (
+    <div>
+      <Navigation />
+      <div className="container">
+        <div className="row">
+          <PostDetail {...props} />
+          <SideBar />
         </div>
-        <Footer />
       </div>
-    );
-  }
-}
+      <Footer />
+    </div>
+  );
+};
 
 export default BlogPost;

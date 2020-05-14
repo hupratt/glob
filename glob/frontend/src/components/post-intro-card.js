@@ -6,13 +6,10 @@ import { Link } from "react-router-dom";
 class PostIntroCard extends React.Component {
   constructor(props) {
     super(props);
-    this._isMounted = false;
-    this.state = { data: undefined };
-    this.getPost = this.getPost.bind(this);
+    this.state = { data: null, image: null };
   }
 
   componentDidMount() {
-    this._isMounted = true;
     this.getPost();
   }
 
@@ -22,23 +19,26 @@ class PostIntroCard extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
+  getPost = () => {
+    this.setState(
+      { data: this.props.post },
+      () =>
+        this.state.data.image &&
+        axios
+          .get("/api/v2/images/" + this.state.data.image + "/")
+          .then((res) => {
+            this.setState({ image: res.data.meta.download_url }, () => {
+              console.log(this.state);
+            });
+          })
+    );
+  };
 
-  getPost() {
-    axios.get("/api/cms/pages/" + this.props.post.id + "/").then((res) => {
-      if (this._isMounted) {
-        this.setState({ data: res.data });
-      }
-    });
-  }
-
-  renderPost(data) {
+  renderPost(data, image) {
     return (
       <div className="card mb-4">
         <Link to={`/post/${data.id}`}>
-          <img src={data.header_image_url.url} class="card-img-top" />
+          <img src={image} className="card-img-top" />
         </Link>
         <div className="card-body">
           <h2 className="card-title">
@@ -58,13 +58,13 @@ class PostIntroCard extends React.Component {
   }
 
   render() {
-    const data = this.state.data;
-    if (data !== undefined) {
-      return this.renderPost(data);
+    const { data, image } = this.state;
+    if (data) {
+      return this.renderPost(data, image);
     } else {
       return <div className="card mb-4"></div>;
     }
   }
 }
 
-export { PostIntroCard };
+export default PostIntroCard;

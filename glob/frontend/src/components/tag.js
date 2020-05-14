@@ -21,12 +21,12 @@ class TagWidget extends React.Component {
 
   render() {
     return (
-      <div class="card my-4">
-        <h5 class="card-header">Tags</h5>
-        <div class="card-body">
+      <div className="card my-4">
+        <h5 className="card-header">Tags</h5>
+        <div className="card-body">
           {this.state.tags.map((tag) => (
             <Link to={`/tag/${tag.slug}`}>
-              <span class="badge badge-secondary">{tag.name}</span>{" "}
+              <span className="badge badge-secondary">{tag.name}</span>{" "}
             </Link>
           ))}
         </div>
@@ -35,4 +35,4 @@ class TagWidget extends React.Component {
   }
 }
 
-export { TagWidget };
+export default TagWidget;
