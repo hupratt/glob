@@ -2,7 +2,6 @@ import React, { Component, Suspense } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { connect } from "react-redux";
 
-import * as actions from "./actions/auth";
 import "semantic-ui-css/semantic.min.css";
 import { CSSTransition } from "react-transition-group";
 import BlogHome from "./components/blog-home";
