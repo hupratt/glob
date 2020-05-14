@@ -10,7 +10,7 @@ export const facebookLogin = `${base}/accounts/facebook/login/`;
 export const githubLogin = `${base}/accounts/github/login/`;
 export const productListURL = `${endpoint}/products/`;
 
-export const bookListURL = (
+export const postListURL = (
   offset = 0,
   language = "",
   checkedItems = "",
@@ -18,7 +18,7 @@ export const bookListURL = (
   price = "0,100",
   text = ""
 ) =>
-  `${endpoint}/books/?limit=12&offset=${offset}&language=${language}&authors=${checkedItems}&category=${category}&price=${price}&text=${text}`;
+  `${endpoint}/blog/?limit=12&offset=${offset}&language=${language}&authors=${checkedItems}&category=${category}&price=${price}&text=${text}`;
 
 export const productDetailURL = (id) => `${endpoint}/products/${id}/`;
 export const bookDetailURL = (id) => `${endpoint}/books/${id}/`;

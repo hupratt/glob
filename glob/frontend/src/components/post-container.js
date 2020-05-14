@@ -1,21 +1,12 @@
 import React from "react";
-import axios from "axios";
 import queryString from "query-string";
-
+import { fetchPosts } from "../actions/posts";
 import PostIntroCard from "./post-intro-card";
-import { Link } from "react-router-dom";
+import { postListURL } from "../constants";
+import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 class PostContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      posts: [],
-      pageCount: 0,
-      pageStep: 10,
-      images: null,
-    };
-  }
-
   getPage() {
     const values = queryString.parse(this.props.location.search);
     return values.page === undefined ? 1 : parseInt(values.page);
@@ -35,35 +26,24 @@ class PostContainer extends React.Component {
   }
 
   getPosts = () => {
-    let category =
-      this.props.match.params.category === undefined
-        ? "*"
-        : this.props.match.params.category;
-    let tag =
-      this.props.match.params.tag === undefined
-        ? "*"
-        : this.props.match.params.tag;
+    // let category =
+    //   this.props.match.params.category === undefined
+    //     ? "*"
+    //     : this.props.match.params.category;
+    // let tag =
+    //   this.props.match.params.tag === undefined
+    //     ? "*"
+    //     : this.props.match.params.tag;
 
-    let offset = (this.getPage() - 1) * this.state.pageStep;
-    axios
-      .get(
-        `/api/blog/?limit=${this.state.pageStep}&offset=${offset}&category=${category}&tag=${tag}`
-      )
-      .then((res) => {
-        const posts = res.data.results;
-        this.setState({
-          posts,
-          pageCount: Math.ceil(
-            parseInt(res.data.results.length) / this.state.pageStep
-          ),
-        });
-      });
+    // let offset = (this.getPage() - 1) * this.state.pageStep;
+    console.log(`fetching ${postListURL}`);
+    this.props.fetchPosts(postListURL());
   };
 
   render() {
     return (
       <div className="col-md-8">
-        {this.state.posts.map((post) => (
+        {this.props.posts.map((post) => (
           <PostIntroCard key={post.id} post={post} />
         ))}
 
@@ -83,7 +63,7 @@ class PostContainer extends React.Component {
             </li>
             <li
               className={
-                this.getPage() >= this.state.pageCount
+                this.getPage() >= this.props.pageCount
                   ? "page-item disabled"
                   : "page-item "
               }
@@ -102,4 +82,23 @@ class PostContainer extends React.Component {
   }
 }
 
-export default PostContainer;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchPosts: (url_endpoint) => dispatch(fetchPosts(url_endpoint)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts.posts,
+    pageCount: state.posts.pageCount,
+    pageStep: state.posts.pageStep,
+    images: state.posts.images,
+  };
+};
+
+// BookDetailPage.propTypes = propTypes;
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(PostContainer)
+);
