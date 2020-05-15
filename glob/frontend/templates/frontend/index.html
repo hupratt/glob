@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class='js'>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,8 +32,6 @@
     
     <noscript> You need to enable JavaScript to run this app. </noscript>
     <div id="root"></div>
-    <!-- laod stripe synchronously before main.js -->
-    <script src="{% static 'frontend/main.js' %}"></script>
 
     <!-- Facebook login functionality-->
     {% if FACEBOOK_KEY %}
@@ -59,5 +57,13 @@
       }(document, 'script', 'facebook-jssdk'));
     </script>
     {% endif %}
+
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/charming.min.js' %}"></script>
+    <script src="{% static 'js/TweenMax.min.js' %}"></script>
+
+    <script src="{% static 'js/prism.js' %}"></script>
+    <script src="{% static 'frontend/main.js' %}"></script>
   </body>
 </html>

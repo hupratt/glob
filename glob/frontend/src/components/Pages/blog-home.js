@@ -9,20 +9,15 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { postListURL, categoryListURL, tagsListURL } from "../../constants";
 import PostIntroCard from "../Elements/post-intro-card";
-
-const PostContainer = ({ posts, pageCount }) => {
-  return (
-    <div className="col-md-8">
-      {posts.map((post) => (
-        <PostIntroCard key={post.id} post={post} />
-      ))}
-    </div>
-  );
-};
+import { GridItem } from "../Elements/grid";
 
 class BlogHome extends React.Component {
   componentDidMount() {
     this.fetchStuff();
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "http://127.0.0.1:8000/static/js/demo.js";
+    document.body.appendChild(script);
   }
 
   componentDidUpdate(prevProps) {
@@ -45,7 +40,7 @@ class BlogHome extends React.Component {
         <Navigation />
         <div className="container">
           <div className="row">
-            <PostContainer posts={posts} pageCount={pageCount} />
+            <GridItem posts={posts} />
             <SideBar categories={categories} tags={tags} />
           </div>
         </div>
