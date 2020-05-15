@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const renderTags = (taglist) => {
   let elements = [];
   taglist.map((tag) => {
     elements.push(
-      <a href="#" key={tag.slug}>
+      <Link to={`/tag/${tag.slug}`} key={tag.slug}>
         <span className="badge badge-secondary">{tag.name}</span>
-      </a>
+      </Link>
     );
   });
   return elements;
