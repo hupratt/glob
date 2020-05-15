@@ -9,7 +9,7 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { postListURL, categoryListURL, tagsListURL } from "../../constants";
 import PostIntroCard from "../Elements/post-intro-card";
-import { GridItem } from "../Elements/grid";
+import Grid from "../Elements/grid";
 
 class BlogHome extends React.Component {
   componentDidMount() {
@@ -40,7 +40,7 @@ class BlogHome extends React.Component {
         <Navigation />
         <div className="container">
           <div className="row">
-            <GridItem posts={posts} />
+            <Grid posts={posts} />
             <SideBar categories={categories} tags={tags} />
           </div>
         </div>
