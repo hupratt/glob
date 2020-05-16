@@ -8,7 +8,6 @@ import { fetchTags } from "../../actions/tags";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { postListURL, categoryListURL, tagsListURL } from "../../constants";
-import PostIntroCard from "../Elements/post-intro-card";
 import Grid from "../Elements/grid";
 
 class BlogHome extends React.Component {
@@ -38,13 +37,11 @@ class BlogHome extends React.Component {
     return (
       <div>
         <Navigation />
-        <div className="container">
-          <div className="row">
-            <Grid posts={posts} />
-            <SideBar categories={categories} tags={tags} />
-          </div>
-        </div>
-        <Footer />
+        <main>
+          <Grid posts={posts} />
+          {/* <SideBar categories={categories} tags={tags} /> */}
+          <Footer />
+        </main>
       </div>
     );
   }

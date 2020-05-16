@@ -7,7 +7,8 @@ import { CSSTransition } from "react-transition-group";
 import BlogHome from "./components/Pages/blog-home";
 import BlogPost from "./components/Pages/blog-post";
 import { Route } from "react-router-dom";
-import "../static/css/main.css";
+import "../static/css/base.css";
+import "./App.css";
 
 class App extends Component {
   render() {

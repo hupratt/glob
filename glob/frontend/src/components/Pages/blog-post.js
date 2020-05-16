@@ -2,6 +2,7 @@ import React from "react";
 import Navigation from "../Elements/navigation";
 import Footer from "../Elements/footer";
 import SideBar from "../Elements/sidebar";
+import "./blog-post.css";
 
 const PostDetail = ({ post }) => {
   if (post) {
