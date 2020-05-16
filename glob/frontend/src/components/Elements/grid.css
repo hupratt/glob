@@ -138,6 +138,9 @@
 .js .content__item-img {
   visibility: hidden;
 }
+.hide-temporarily {
+  visibility: hidden;
+}
 
 .content__item-title {
   position: relative;

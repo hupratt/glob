@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./navigation.css";
 
-const Navigation = ({ children }) => {
+const Navigation = ({ children, animation_class }) => {
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+      className={`navbar navbar-expand-lg navbar-dark bg-dark ${animation_class}`}
       role="navigation"
     >
       <div className="container">

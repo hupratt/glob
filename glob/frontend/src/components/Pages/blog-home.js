@@ -9,6 +9,7 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { postListURL, categoryListURL, tagsListURL } from "../../constants";
 import Grid from "../Elements/grid";
+import SplashScreen from "../Elements/splashscreen";
 
 class BlogHome extends React.Component {
   componentDidMount() {
@@ -29,17 +30,24 @@ class BlogHome extends React.Component {
     this.props.fetchTags(categoryListURL);
   };
   render() {
-    const { posts, pageCount, tags, categories } = this.props;
+    const {
+      posts,
+      pageCount,
+      tags,
+      categories,
+      loading,
+      animation_completed,
+      animation_class,
+    } = this.props;
     return (
-      <div>
-        <Navigation>
+      <React.Fragment>
+        <Navigation animation_class={animation_class}>
           <SideBar categories={categories} tags={tags} />
         </Navigation>
-        <main>
-          <Grid posts={posts} />
-          <Footer />
-        </main>
-      </div>
+        <SplashScreen loading={loading} />
+        <Grid posts={posts} animation_class={animation_class} />
+        <Footer animation_class={animation_class} />
+      </React.Fragment>
     );
   }
 }
@@ -63,6 +71,8 @@ const mapStateToProps = (state) => {
     images: state.posts.images,
     tags: state.tags.tags,
     categories: state.category.categories,
+    animation_completed: state.splashscreen.animation_completed,
+    animation_class: state.splashscreen.animation_class,
   };
 };
 

@@ -87,7 +87,7 @@ class Grid extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="grid-wrap">
+        <div className={`grid-wrap ${this.props.animation_class}`}>
           <div className="grid">{this.state.cards}</div>
         </div>
         <div className="content">
@@ -95,6 +95,7 @@ class Grid extends React.Component {
           <button class="content__close">Close</button>
           <svg class="content__indicator icon icon--caret"></svg>
         </div>
+        }
       </React.Fragment>
     );
   }

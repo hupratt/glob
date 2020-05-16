@@ -1,9 +1,9 @@
 import React from "react";
 import "./footer.css";
 
-const Footer = () => {
+const Footer = ({ animation_class }) => {
   return (
-    <footer className="py-5 bg-dark">
+    <footer className={`py-5 bg-dark ${animation_class}`}>
       <div className="container">
         <p className="m-0 text-center text-white">Copyright © 2020</p>
       </div>
