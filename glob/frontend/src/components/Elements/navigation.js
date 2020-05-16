@@ -9,9 +9,6 @@ const Navigation = ({ children, animation_class }) => {
       role="navigation"
     >
       <div className="container">
-        <Link to="/" className="navbar-brand">
-          Wagtail React Blog Demo
-        </Link>
         <button
           className="navbar-toggler"
           type="button"
