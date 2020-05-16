@@ -13,10 +13,6 @@ import Grid from "../Elements/grid";
 class BlogHome extends React.Component {
   componentDidMount() {
     this.fetchStuff();
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "http://127.0.0.1:8000/static/js/demo.js";
-    document.body.appendChild(script);
   }
 
   componentDidUpdate(prevProps) {
@@ -36,10 +32,11 @@ class BlogHome extends React.Component {
     const { posts, pageCount, tags, categories } = this.props;
     return (
       <div>
-        <Navigation />
+        <Navigation>
+          <SideBar categories={categories} tags={tags} />
+        </Navigation>
         <main>
           <Grid posts={posts} />
-          {/* <SideBar categories={categories} tags={tags} /> */}
           <Footer />
         </main>
       </div>

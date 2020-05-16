@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./navigation.css";
 
-const Navigation = () => {
+const Navigation = ({ children }) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav
+      className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+      role="navigation"
+    >
       <div className="container">
         <Link to="/" className="navbar-brand">
           Wagtail React Blog Demo
@@ -20,7 +24,7 @@ const Navigation = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarResponsive">
-          <ul className="navbar-nav"></ul>
+          <ul className="navbar-nav">{children}</ul>
         </div>
       </div>
     </nav>

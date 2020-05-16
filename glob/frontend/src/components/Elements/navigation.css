@@ -1,0 +1,16 @@
+/* override bootstrap */
+@media screen and (min-width: 992px) {
+  #navbarResponsive {
+    display: none !important;
+  }
+  #navbarResponsive.show {
+    display: flex !important;
+  }
+  .navbar-toggler {
+    display: flex !important;
+  }
+  .navbar-toggler button {
+    cursor: default !important;
+    pointer-events: all !important;
+  }
+}
