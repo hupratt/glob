@@ -422,6 +422,7 @@ main {
   grid-template-rows: 100%;
   align-items: center;
   pointer-events: none;
+  margin-top: 80px;
 }
 
 .js .content {
@@ -839,8 +840,4 @@ main {
 }
 .date {
   margin-top: 9.5px;
-}
-
-.navbar.fixed-top {
-  z-index: 0 !important;
 }

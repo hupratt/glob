@@ -1,15 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const createCard = (post) => {
   return (
-    <a href="#" className="grid__item" key={post.id}>
+    <Link to={`/post/${post.id}`} className="grid__item" key={post.id}>
       <div className="grid__item-bg"></div>
       <div className="grid__item-wrap">
         <img className="grid__item-img" src={post.get_image} alt="Some image" />
       </div>
       <h3 className="grid__item-title">{post.title}</h3>
       <h4 className="grid__item-number">{post.id}</h4>
-    </a>
+    </Link>
   );
 };
 
@@ -17,7 +18,11 @@ const createPostDetail = (post) => {
   return (
     <div className="content__item" key={post.id}>
       <div className="content__item-intro">
-        <img className="content__item-img" src="img/1.jpg" alt="Some image" />
+        <img
+          className="content__item-img"
+          src={post.get_image}
+          alt="Some image"
+        />
         <h2 className="content__item-title">{post.title}</h2>
       </div>
       <h3 className="content__item-subtitle">
@@ -52,38 +57,27 @@ const createPostDetail = (post) => {
   );
 };
 
-const createPostsDetail = (posts) =>
-  posts.map((post) => createPostDetail(post));
-
-const createCards = (posts) => posts.map((post) => createCard(post));
-
 class Grid extends React.Component {
   constructor(props) {
     super(props);
     this.state = { cards: null, postContent: null, scriptIsNotMounted: true };
   }
-
-  appendScript = () => {
-    const script = document.createElement("script");
-    script.async = false;
-    script.src = "http://127.0.0.1:8000/static/js/demo.js";
-    document.body.appendChild(script);
-  };
+  createCards = (posts) => posts.map((post) => createCard(post));
+  createPostsDetail = (posts) => posts.map((post) => createPostDetail(post));
 
   componentDidUpdate() {
     if (this.props.posts.length > 0 && this.state.scriptIsNotMounted) {
       const { posts } = this.props;
       this.setState(
         {
-          cards: createCards(posts),
-          postContent: createPostsDetail(posts),
+          cards: this.createCards(posts),
+          postContent: this.createPostsDetail(posts),
           scriptIsNotMounted: false,
         },
         () => {
-          console.log(this.state, posts);
           const script = document.createElement("script");
           script.async = false;
-          script.src = "http://127.0.0.1:8000/static/js/demo.js";
+          script.src = "http://127.0.0.1:8000/static/js/grid.js";
           document.body.appendChild(script);
         }
       );
