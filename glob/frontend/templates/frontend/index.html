@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class='js'>
+<html lang="en" class='no-js'>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +10,7 @@
     <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet" />
     <title>Glob: talk is cheap, show me the code</title>
     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/prism.css' %}">
     <link rel="manifest" href="{% static 'pwa/manifest.json' %}">
     <!-- ios support start -->
     <link rel="apple-touch-icon" href="{% static 'pwa/icon-72x72.jpg' %}">
@@ -24,7 +25,13 @@
     <meta name="theme-color" content="#7dcbd8">
     <!-- colorize status bar -->
     <meta name="apple-mobile-web-app-status-bar" content="#7dcbd8">
-    <!-- ios support end -->
+    <!-- ios support end 
+    <script>
+      document.documentElement.className = document.documentElement.className.replace(
+        "no-js",
+        "js",
+      );
+    </script>-->
   </head>
   <body>
     
@@ -61,7 +68,6 @@
     <script async='true' src="{% static 'js/charming.min.js' %}"></script>
     <script async='true' src="{% static 'js/TweenMax.min.js' %}"></script>
 
-    <script async='true' src="{% static 'js/prism.js' %}"></script>
     <script async='true' src="{% static 'js/anime.min.js' %}"></script>
     <script async='true' src="{% static 'frontend/main.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

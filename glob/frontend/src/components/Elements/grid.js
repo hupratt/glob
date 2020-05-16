@@ -1,7 +1,5 @@
 import React from "react";
-import PostDisplay from "./displayRichText";
-import PostEditor from "./editRichText";
-import HTMLConvertExample from "./HTMLConvertExample";
+import draftJsEditor from "./draftJsEditor";
 import { Link } from "react-router-dom";
 import "./grid.css";
 
@@ -31,9 +29,8 @@ const createCardContent = (post) => {
       </div>
       <h3 className="content__item-subtitle">{post.introduction}</h3>
       <div className="content__item-text">
-        {/* <PostDisplay editorContent={post.body} /> */}
-        {/* <PostEditor body={post.body} /> */}
-        <HTMLConvertExample body={post.body} />
+        {/* <draftJsEditor body={post.body} /> */}
+        <div dangerouslySetInnerHTML={{ __html: post.rich_text }} />
       </div>
     </div>
   );
@@ -61,6 +58,10 @@ class Grid extends React.Component {
           script.async = false;
           script.src = "http://127.0.0.1:8000/static/js/grid.js";
           document.body.appendChild(script);
+          const script2 = document.createElement("script");
+          script2.async = false;
+          script2.src = "http://127.0.0.1:8000/static/js/prism.js";
+          document.body.appendChild(script2);
         }
       );
     }

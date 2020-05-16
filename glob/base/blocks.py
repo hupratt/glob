@@ -19,9 +19,9 @@ CODE_CHOICES = [
 ]
 
 
-class MyRichTextBlock(RichTextBlock):
-    def get_api_representation(self, value, context=None):
-        return richtext(value.source)
+# class MyRichTextBlock(RichTextBlock):
+#     def get_api_representation(self, value, context=None):
+#         return richtext("whatever")
 
 
 class CodeBlock(StructBlock):
@@ -92,10 +92,10 @@ class BaseStreamBlock(StreamBlock):
 
     code_block = CodeBlock()
     heading_block = HeadingBlock()
-    paragraph_block = MyRichTextBlock(
+    paragraph_block = RichTextBlock(
         icon="fa-paragraph", template="blocks/paragraph_block.html"
     )
-    paragraph_dev_block = MyRichTextBlock(
+    paragraph_dev_block = RichTextBlock(
         icon="fa-paragraph",
         template="blocks/paragraph_block.html",
         features=[
