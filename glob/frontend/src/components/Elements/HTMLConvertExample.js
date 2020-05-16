@@ -10,7 +10,6 @@ import {
   convertFromHTML,
   convertToRaw,
 } from "draft-js";
-// import Editor from "draft-js-plugins-editor";
 
 class HTMLConvertExample extends React.Component {
   constructor(props) {
@@ -27,11 +26,6 @@ class HTMLConvertExample extends React.Component {
       },
     ]);
 
-    const sampleMarkup =
-      "<b>Bold text</b>, <i>Italic text</i><br/ ><br />" +
-      '<a href="https://www.facebook.com">Example link</a><br /><br/ >' +
-      '<img src="https://raw.githubusercontent.com/facebook/draft-js/master/examples/draft-0-10-0/convertFromHTML/image.png" height="112" width="200" />';
-
     const blocksFromHTML = convertFromHTML(this.props.body);
     const state = ContentState.createFromBlockArray(
       blocksFromHTML.contentBlocks,
@@ -41,40 +35,20 @@ class HTMLConvertExample extends React.Component {
     this.state = {
       editorState: EditorState.createWithContent(state, decorator),
     };
-
-    this.focus = () => this.refs.editor.focus();
-    this.onChange = (editorState) => this.setState({ editorState });
-    this.logState = () => {
-      const content = this.state.editorState.getCurrentContent();
-      console.log(convertToRaw(content));
-    };
   }
 
   render() {
     return (
-      <div style={styles.root}>
-        <div style={{ marginBottom: 10 }}>
-          Sample HTML converted into Draft content state
-        </div>
-        <div style={styles.editor} onClick={this.focus}>
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            ref="editor"
-          />
-        </div>
-        <input
-          onClick={this.logState}
-          style={styles.button}
-          type="button"
-          value="Log State"
-        />
-      </div>
+      <Editor
+        editorState={this.state.editorState}
+        onChange={this.onChange}
+        ref="editor"
+      />
     );
   }
 }
 
-function findLinkEntities(contentBlock, callback, contentState) {
+const findLinkEntities = (contentBlock, callback, contentState) => {
   contentBlock.findEntityRanges((character) => {
     const entityKey = character.getEntity();
     return (
@@ -82,18 +56,14 @@ function findLinkEntities(contentBlock, callback, contentState) {
       contentState.getEntity(entityKey).getType() === "LINK"
     );
   }, callback);
-}
+};
 
 const Link = (props) => {
   const { url } = props.contentState.getEntity(props.entityKey).getData();
-  return (
-    <a href={url} style={styles.link}>
-      {props.children}
-    </a>
-  );
+  return <a href={url}>{props.children}</a>;
 };
 
-function findImageEntities(contentBlock, callback, contentState) {
+const findImageEntities = (contentBlock, callback, contentState) => {
   contentBlock.findEntityRanges((character) => {
     const entityKey = character.getEntity();
     return (
@@ -101,7 +71,7 @@ function findImageEntities(contentBlock, callback, contentState) {
       contentState.getEntity(entityKey).getType() === "IMAGE"
     );
   }, callback);
-}
+};
 
 const Image = (props) => {
   const { height, src, width } = props.contentState
@@ -109,24 +79,6 @@ const Image = (props) => {
     .getData();
 
   return <img src={src} height={height} width={width} />;
-};
-
-const styles = {
-  root: {
-    fontFamily: "'Helvetica', sans-serif",
-    padding: 20,
-    width: 600,
-  },
-  editor: {
-    border: "1px solid #ccc",
-    cursor: "text",
-    minHeight: 80,
-    padding: 10,
-  },
-  button: {
-    marginTop: 10,
-    textAlign: "center",
-  },
 };
 
 export default HTMLConvertExample;
