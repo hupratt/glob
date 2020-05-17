@@ -35,20 +35,20 @@ for (x in labels) {
 					echo 'which python are you running?'
 					which python
 					
-					$PYTHON_P -m pip install --upgrade pip 
+					pip install --upgrade pip 
 					echo 'pip upgrade done'
-					$PYTHON_P -m pip install -r requirements.txt
+					pip install -r requirements.txt
 					echo 'pip install done'
 					
-					$PYTHON_P manage.py migrate                  
+					python manage.py migrate                  
 					echo 'manage.py migrate done'
 
-					$PYTHON_P manage.py compilemessages --settings=home.settings
+					python manage.py compilemessages --settings=home.settings
 
-					$PYTHON_P manage.py collectstatic --noinput --settings=home.settings
+					python manage.py collectstatic --noinput --settings=home.settings
 					echo 'manage.py collectstatic done'
 
-					$PYTHON_P manage.py check --deploy
+					python manage.py check --deploy
 
 					deactivate 
 
