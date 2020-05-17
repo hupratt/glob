@@ -30,7 +30,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", False)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -257,6 +257,8 @@ if "GS_BUCKET_NAME" in os.environ:
 
 
 SESSION_COOKIE_SAMESITE = "Strict"
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 LANGUAGE_COOKIE_SAMESITE = "Strict"
 
 REST_FRAMEWORK = {
@@ -273,6 +275,6 @@ CORS_ORIGIN_WHITELIST = (
     "http://localhost:8000",
     "http://127.0.0.1:8000",
     "http://localhost:3000",
-    "https://new.pythonbots.software"
+    "https://new.pythonbots.software",
 )
 CORS_ORIGIN_ALLOW_ALL = True

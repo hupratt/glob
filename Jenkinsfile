@@ -42,8 +42,9 @@ for (x in labels) {
 					
 					python manage.py migrate                  
 					echo 'manage.py migrate done'
-
-					python manage.py compilemessages --settings=glob.settings
+					
+					#command not working
+					#python manage.py compilemessages --settings=glob.settings
 
 					python manage.py collectstatic --noinput --settings=glob.settings
 					echo 'manage.py collectstatic done'
