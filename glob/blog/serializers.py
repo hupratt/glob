@@ -21,17 +21,17 @@ class PostPageSerializer(serializers.ModelSerializer):
             # "body",
             "introduction",
             "rich_text",
-            "string_authors"
+            "string_authors",
         )
 
     def get_string_authors(self, obj):
-        return [f'{author.first_name} {author.last_name}' for author in obj.authors()]
+        return [f"{author.first_name} {author.last_name}" for author in obj.authors()]
 
     def get_parent_page(self, obj):
         return obj.get_parent().slug
 
     def get_rich_text(self, obj):
-        richtext = obj.body.render_as_block()
+        richtext = obj.body.__html__()
         markdown = richtext_to_html(richtext)
         return markdown
 
