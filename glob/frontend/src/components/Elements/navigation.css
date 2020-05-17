@@ -23,11 +23,11 @@
   max-width: 90vw;
 }
 
-.navbar-toggler-icon i {
+.navbar i {
   color: #ccc;
 }
 
-.navbar button {
-  padding-top: 5px;
-  padding-bottom: 5px;
+.navbar .navbar-toggler-icon {
+  display: flex;
+  align-items: center;
 }

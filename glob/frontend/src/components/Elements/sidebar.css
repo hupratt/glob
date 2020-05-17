@@ -1,13 +1,29 @@
+.blog-sidebar .profile-sidebar {
+  padding-top: 80px;
+}
 .blog-sidebar {
+  padding: 20px;
   position: fixed;
   top: 0;
   right: 0;
   background: white;
   height: 100vh;
-  padding-top: 80px;
   z-index: 1;
   transition: width 2s;
 }
+
 .blog-sidebar.show {
   width: 1000px;
+}
+
+.blog-sidebar .navbar-toggler {
+  float: right;
+}
+
+.card-body a {
+  padding: 3px;
+}
+
+.badge-secondary {
+  padding: 7px;
 }
