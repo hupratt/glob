@@ -39,14 +39,21 @@ const createCardContent = (post) => {
 class Grid extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cards: null, postContent: null, scriptIsNotMounted: true };
+    this.state = {
+      cards: null,
+      postContent: null,
+      scriptIsNotMounted: true,
+    };
   }
   createCards = (posts) => posts.map((post) => createCard(post));
   createCardsContent = (posts) => posts.map((post) => createCardContent(post));
 
-  componentDidUpdate() {
-    if (this.props.posts.length > 0 && this.state.scriptIsNotMounted) {
-      const { posts } = this.props;
+  componentDidUpdate(prevProps) {
+    const { posts } = this.props;
+    if (
+      (posts.length > 0 && this.state.scriptIsNotMounted) ||
+      prevProps.posts !== posts
+    ) {
       this.setState(
         {
           cards: this.createCards(posts),
@@ -67,13 +74,16 @@ class Grid extends React.Component {
     }
   }
   render() {
+    const { animation_class } = this.props;
+    const { cards, postContent } = this.state;
+
     return (
       <React.Fragment>
-        <div className={`grid-wrap ${this.props.animation_class}`}>
-          <div className="grid">{this.state.cards}</div>
+        <div className={`grid-wrap ${animation_class}`}>
+          <div className="grid">{cards}</div>
         </div>
         <div className="content">
-          {this.state.postContent}
+          {postContent}
           <button class="content__close">Close</button>
           <svg class="content__indicator icon icon--caret"></svg>
         </div>

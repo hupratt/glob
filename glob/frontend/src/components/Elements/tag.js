@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { postListURL } from "../../constants";
 
 const renderTags = (taglist) => {
   let elements = [];
   taglist.map((tag) => {
     elements.push(
-      <Link to={`/tag/${tag.slug}`} key={tag.slug}>
+      <Link to={postListURL(0, "", "", "", "", "", tag.slug)} key={tag.slug}>
         <span className="badge badge-secondary">{tag.name}</span>
       </Link>
     );

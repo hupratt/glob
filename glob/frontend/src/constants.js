@@ -17,8 +17,19 @@ export const postListURL = (
   checkedItems = "",
   category = "",
   price = "0,100",
-  text = ""
+  text = "",
+  tag = ""
 ) =>
-  `${endpoint}/blog/?limit=12&offset=${offset}&language=${language}&authors=${checkedItems}&category=${category}&price=${price}&text=${text}`;
+  `${apiURL}/blog/?limit=12&offset=${offset}&language=${language}&authors=${checkedItems}&category=${category}&price=${price}&text=${text}&tag=${tag}`;
+export const postListURL2 = (
+  offset = 0,
+  language = "",
+  checkedItems = "",
+  category = "",
+  price = "0,100",
+  text = "",
+  tag = ""
+) =>
+  `${apiURL}/blog/?limit=12&offset=${offset}&language=${language}&authors=${checkedItems}&category=${category}&price=${price}&text=${text}&tag=${tag}`;
 
 export const s3_base_url = `https://bookshop-images-f1492f08-f236-4a55-afb7-70ded209cb24.s3.eu-west-2.amazonaws.com/`;

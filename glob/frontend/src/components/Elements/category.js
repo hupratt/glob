@@ -1,16 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { postListURL, postListURL2 } from "../../constants";
 
 const renderCategories = (categories) => {
   let cats = [];
-
-  categories.map((category) =>
+  categories.map((category) => {
+    let endpoint = postListURL(0, "", "", category.slug, "", "", "");
+    endpoint = endpoint.slice(endpoint.indexOf("?limit"), endpoint.length);
     cats.push(
       <li key={category.slug}>
-        <Link to={`/category/${category.slug}`}>{category.name}</Link>
+        <Link to={endpoint}>{category.name}</Link>
       </li>
-    )
-  );
+    );
+  });
   return cats;
 };
 

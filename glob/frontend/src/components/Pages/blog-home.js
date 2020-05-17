@@ -7,13 +7,20 @@ import { fetchCategories } from "../../actions/categories";
 import { fetchTags } from "../../actions/tags";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { postListURL, categoryListURL, tagsListURL } from "../../constants";
+import {
+  postListURL,
+  categoryListURL,
+  tagsListURL,
+  base,
+} from "../../constants";
 import Grid from "../Elements/grid";
 import SplashScreen from "../Elements/splashscreen";
 
 class BlogHome extends React.Component {
   componentDidMount() {
-    this.fetchStuff();
+    this.props.fetchCategories(tagsListURL);
+    this.props.fetchTags(categoryListURL);
+    this.props.fetchPosts(postListURL());
   }
 
   componentDidUpdate(prevProps) {
@@ -21,15 +28,13 @@ class BlogHome extends React.Component {
       prevProps.location.search !== this.props.location.search ||
       prevProps.location.pathname !== this.props.location.pathname
     ) {
-      this.fetchStuff();
+      const endpoint = `${base}/api/blog/${this.props.location.search}`;
+      this.props.fetchPosts(endpoint);
     }
   }
-  fetchStuff = () => {
-    this.props.fetchPosts(postListURL());
-    this.props.fetchCategories(tagsListURL);
-    this.props.fetchTags(categoryListURL);
-  };
+
   render() {
+    console.log("this.props.posts", this.props.posts);
     const {
       posts,
       pageCount,
@@ -38,6 +43,7 @@ class BlogHome extends React.Component {
       loading,
       animation_completed,
       animation_class,
+      location,
     } = this.props;
     return (
       <React.Fragment>
