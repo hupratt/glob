@@ -13,7 +13,7 @@ for (x in labels) {
 				def PYTHON_P="$PROJECT/env/bin/python3.6"
 				
 				stage ('Checkout') {
-					// checkout source control
+					// checkout source control, need write permission to fetch all
 					sh """ 
 					whoami
 					sudo service apache2 stop
@@ -27,7 +27,7 @@ for (x in labels) {
 					
 					sh """ 
 					cd $PROJECT
-					sudo chmod -R 750 $PROJECT
+					sudo chmod -R 770 $PROJECT
 					sudo chown -R ubuntu:www-data $PROJECT
 					npm install
 					npm run build

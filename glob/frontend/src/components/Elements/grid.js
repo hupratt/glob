@@ -96,11 +96,11 @@ class Grid extends React.Component {
         () => {
           const script = document.createElement("script");
           script.async = false;
-          script.src = "http://127.0.0.1:8000/static/js/grid.js";
+          script.src = "/static/js/grid.js";
           document.body.appendChild(script);
           const script2 = document.createElement("script");
           script2.async = false;
-          script2.src = "http://127.0.0.1:8000/static/js/prism.js";
+          script2.src = "/static/js/prism.js";
           document.body.appendChild(script2);
         }
       );

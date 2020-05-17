@@ -33,7 +33,7 @@ class SplashScreen extends React.Component {
           setTimeout(() => {
             const script = document.createElement("script");
             script.async = false;
-            script.src = "http://127.0.0.1:8000/static/js/makelines.js";
+            script.src = "/static/js/makelines.js";
             document.body.appendChild(script);
             setTimeout(() => {
               this.props.animation_complete();
