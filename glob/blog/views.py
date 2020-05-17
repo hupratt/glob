@@ -21,9 +21,9 @@ class PostListView(ListAPIView):
         category = self.request.query_params.get("category", None)
         tag = self.request.query_params.get("tag", None)
         if category is not None and category != "*" and category != "":
-            queryset = queryset.filter(categories__slug__contains=category)
+            queryset = queryset.filter(categories__slug=category)
         if tag is not None and tag != "*" and tag != "":
-            queryset = queryset.filter(tags__slug__contains=tag)
+            queryset = queryset.filter(tags__slug=tag)
         return queryset
 
 

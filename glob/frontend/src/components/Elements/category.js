@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { postListURL, postListURL2 } from "../../constants";
+import { postListURL } from "../../constants";
 
 const renderCategories = (categories) => {
   let cats = [];

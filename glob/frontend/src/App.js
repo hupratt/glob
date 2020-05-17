@@ -20,10 +20,9 @@ class App extends Component {
           <div style={{ zIndex: "1000" }} />
         </CSSTransition>
         <Router>
+          {/* // this.props.match.params */}
           <Route exact path="/" component={BlogHome} />
-          <Route path="/category/:category" component={BlogHome} />
-          <Route path="/tag/:tag" component={BlogHome} />
-          <Route path="/post/:id" component={BlogPost} />
+          {/* <Route path="/category/:category" component={BlogHome} /> */}
         </Router>
       </Suspense>
     );

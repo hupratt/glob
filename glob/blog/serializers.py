@@ -19,7 +19,7 @@ class PostPageSerializer(serializers.ModelSerializer):
             "get_image",
             "string_tags",
             "parent_page",
-            "body",
+            # "body",
             "introduction",
             "rich_text",
         )

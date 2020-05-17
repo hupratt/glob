@@ -18,8 +18,8 @@ import SplashScreen from "../Elements/splashscreen";
 
 class BlogHome extends React.Component {
   componentDidMount() {
-    this.props.fetchCategories(tagsListURL);
-    this.props.fetchTags(categoryListURL);
+    this.props.fetchCategories(categoryListURL);
+    this.props.fetchTags(tagsListURL);
     this.props.fetchPosts(postListURL());
   }
 
@@ -33,22 +33,21 @@ class BlogHome extends React.Component {
     }
   }
 
+  clearFilters = () => {
+    this.props.history.push("/");
+    this.props.fetchPosts(postListURL());
+  };
+
   render() {
-    console.log("this.props.posts", this.props.posts);
-    const {
-      posts,
-      pageCount,
-      tags,
-      categories,
-      loading,
-      animation_completed,
-      animation_class,
-      location,
-    } = this.props;
+    const { posts, tags, categories, loading, animation_class } = this.props;
     return (
       <React.Fragment>
         <Navigation animation_class={animation_class}>
-          <SideBar categories={categories} tags={tags} />
+          <SideBar
+            categories={categories}
+            tags={tags}
+            clearFilters={this.clearFilters}
+          />
         </Navigation>
         <SplashScreen loading={loading} />
         <Grid posts={posts} animation_class={animation_class} />
@@ -72,12 +71,10 @@ const mapStateToProps = (state) => {
     error: state.posts.error,
     loading: state.posts.loading,
     moreloading: state.posts.moreloading,
-    pageCount: state.posts.pageCount,
     pageStep: state.posts.pageStep,
     images: state.posts.images,
     tags: state.tags.tags,
     categories: state.category.categories,
-    animation_completed: state.splashscreen.animation_completed,
     animation_class: state.splashscreen.animation_class,
   };
 };
