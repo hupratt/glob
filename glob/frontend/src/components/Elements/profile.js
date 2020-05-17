@@ -1,4 +1,5 @@
 import React from "react";
+import "./profile.css";
 
 const ProfileWidget = () => {
   return (
@@ -10,7 +11,7 @@ const ProfileWidget = () => {
           alt=""
         />
       </div>
-      <div className="profile-usertitle">
+      <div className="profile-usertitle text-center">
         <div className="profile-usertitle-name">Hugo Pratt</div>
         <div className="profile-usertitle-job">Tech enthusiast</div>
       </div>

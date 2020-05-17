@@ -10,7 +10,7 @@ for (x in labels) {
 			node () {
 				
 				def PROJECT="/home/ubuntu/Dev/glob"
-				def PYTHON_P="$PROJECT/bin/python3.6"
+				def PYTHON_P="$PROJECT/env/bin/python3.6"
 				
 				stage ('Checkout') {
 					// checkout source control
@@ -27,11 +27,11 @@ for (x in labels) {
 					
 					sh """ 
 					cd $PROJECT
-					sudo chmod -R 770 $PROJECT
+					sudo chmod -R 750 $PROJECT
 					sudo chown -R ubuntu:www-data $PROJECT
 					npm install
 					npm run build
-					. bin/activate
+					. env/bin/activate
 					echo 'which python are you running?'
 					which python
 					
@@ -40,15 +40,15 @@ for (x in labels) {
 					$PYTHON_P -m pip install -r requirements.txt
 					echo 'pip install done'
 					
-					$PYTHON_P ./glob/manage.py migrate                  
+					$PYTHON_P manage.py migrate                  
 					echo 'manage.py migrate done'
 
-					$PYTHON_P ./glob/manage.py compilemessages --settings=home.settings
+					$PYTHON_P manage.py compilemessages --settings=home.settings
 
-					$PYTHON_P ./glob/manage.py collectstatic --noinput --settings=home.settings
+					$PYTHON_P manage.py collectstatic --noinput --settings=home.settings
 					echo 'manage.py collectstatic done'
 
-					$PYTHON_P ./glob/manage.py check --deploy
+					$PYTHON_P manage.py check --deploy
 
 					deactivate 
 
