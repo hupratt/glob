@@ -34,7 +34,7 @@ for (x in labels) {
 					. env/bin/activate
 					echo 'which python are you running?'
 					which python
-					
+					pip install --upgrade pip setuptools wheel
 					pip install --upgrade pip 
 					echo 'pip upgrade done'
 					pip install -r requirements.txt
