@@ -10,21 +10,26 @@ import { Route } from "react-router-dom";
 import "../static/css/base.css";
 import "./App.css";
 
+const youtubeLoader = () => {
+  return (
+    <CSSTransition in={true} appear classNames="youtube" timeout={5000}>
+      <div className="youtube" />
+    </CSSTransition>
+  );
+};
 class App extends Component {
   render() {
     return (
       // i18n translations might still be loaded by the xhr backend
       // use react's Suspense
-      <Suspense fallback="loading">
-        <CSSTransition in={true} appear classNames="youtube" timeout={2000}>
-          <div style={{ zIndex: "1000" }} />
-        </CSSTransition>
-        <Router>
-          {/* // this.props.match.params */}
-          <Route exact path="/" component={BlogHome} />
-          {/* <Route path="/category/:category" component={BlogHome} /> */}
-        </Router>
-      </Suspense>
+      <React.Fragment>
+        <Suspense fallback="loading">
+          {youtubeLoader()}
+          <Router>
+            <Route exact path="/" component={BlogHome} />
+          </Router>
+        </Suspense>
+      </React.Fragment>
     );
   }
 }

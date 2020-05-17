@@ -6,7 +6,7 @@ from .draft_js_utils import richtext_to_html
 
 
 class PostPageSerializer(serializers.ModelSerializer):
-    string_tags = serializers.SerializerMethodField()
+    string_authors = serializers.SerializerMethodField()
     parent_page = serializers.SerializerMethodField()
     rich_text = serializers.SerializerMethodField()
 
@@ -17,15 +17,15 @@ class PostPageSerializer(serializers.ModelSerializer):
             "slug",
             "title",
             "get_image",
-            "string_tags",
             "parent_page",
             # "body",
             "introduction",
             "rich_text",
+            "string_authors"
         )
 
-    def get_string_tags(self, obj):
-        return [tag.name for tag in obj.get_tags]
+    def get_string_authors(self, obj):
+        return [f'{author.first_name} {author.last_name}' for author in obj.authors()]
 
     def get_parent_page(self, obj):
         return obj.get_parent().slug

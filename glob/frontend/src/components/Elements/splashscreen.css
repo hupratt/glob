@@ -154,7 +154,8 @@ a:focus {
 
 /* Buttons */
 .btn {
-  background: #eecc99;
+  background: #6c757d;
+  color: white !important;
   color: inherit;
   border: 0;
   margin: 0;

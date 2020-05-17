@@ -16,6 +16,38 @@ const createCard = (post) => {
   );
 };
 
+const renderAuthor = (authors) => {
+  return (
+    <div class="blog-meta">
+      {authors.forEach((author) => {
+        <div class="author comments-area">
+          <div class="author comment-list">
+            <div class="single-comment justify-content-between d-flex">
+              <div class="user justify-content-between d-flex">
+                <div class="thumb">
+                  <img class="blog-avatar" />
+                </div>
+                <div class="desc">
+                  <div class="d-flex justify-content-between">
+                    <div
+                      class="d-flex align-items-center"
+                      style="margin-top:5px;"
+                    >
+                      <h5>
+                        <a href="#">{author.first_name}</a>
+                      </h5>
+                      <p class="date"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>;
+      })}
+    </div>
+  );
+};
 const createCardContent = (post) => {
   return (
     <div className="content__item" key={post.id}>
@@ -32,6 +64,7 @@ const createCardContent = (post) => {
         {/* <draftJsEditor body={post.body} /> */}
         <div dangerouslySetInnerHTML={{ __html: post.rich_text }} />
       </div>
+      {renderAuthor(post.string_authors)}
     </div>
   );
 };
