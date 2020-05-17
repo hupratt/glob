@@ -256,10 +256,13 @@ if "GS_BUCKET_NAME" in os.environ:
     DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 
 
-SESSION_COOKIE_SAMESITE = "Strict"
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-LANGUAGE_COOKIE_SAMESITE = "Strict"
+if os.getenv("GS_BUCKET_NAME") is False:
+    SESSION_COOKIE_SAMESITE = "Strict"
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    LANGUAGE_COOKIE_SAMESITE = "Strict"
+    SECURE_REFERRER_POLICY = "origin"
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
@@ -277,4 +280,3 @@ CORS_ORIGIN_WHITELIST = (
     "http://localhost:3000",
     "https://new.pythonbots.software",
 )
-CORS_ORIGIN_ALLOW_ALL = True

@@ -35,14 +35,13 @@ for (x in labels) {
 					echo 'which python are you running?'
 					which python
 					pip install --upgrade pip setuptools wheel
-					pip install --upgrade pip 
 					echo 'pip upgrade done'
 					pip install -r requirements.txt
 					echo 'pip install done'
 					
 					python manage.py migrate                  
 					echo 'manage.py migrate done'
-					
+
 					#command not working
 					#python manage.py compilemessages --settings=glob.settings
 
