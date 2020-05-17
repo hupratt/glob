@@ -43,9 +43,9 @@ for (x in labels) {
 					python manage.py migrate                  
 					echo 'manage.py migrate done'
 
-					python manage.py compilemessages --settings=home.settings
+					python manage.py compilemessages --settings=glob.settings
 
-					python manage.py collectstatic --noinput --settings=home.settings
+					python manage.py collectstatic --noinput --settings=glob.settings
 					echo 'manage.py collectstatic done'
 
 					python manage.py check --deploy
