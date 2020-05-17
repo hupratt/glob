@@ -14,3 +14,20 @@
     pointer-events: all !important;
   }
 }
+
+.bg-transparent {
+  background-color: #0ff0;
+}
+
+.navbar .container {
+  max-width: 90vw;
+}
+
+.navbar-toggler-icon i {
+  color: #ccc;
+}
+
+.navbar button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

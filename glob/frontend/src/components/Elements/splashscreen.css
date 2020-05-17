@@ -306,6 +306,11 @@ a:focus {
   font-size: 0.85em;
 }
 
+@font-face {
+  font-family: "Kaushan Script";
+  src: url("/static/fonts/KaushanScript-Regular.ttf") format("truetype");
+}
+
 .codrops-header__title {
   font-family: "Kaushan Script", cusrive;
   text-transform: none;

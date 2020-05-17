@@ -5,7 +5,7 @@ import "./navigation.css";
 const Navigation = ({ children, animation_class }) => {
   return (
     <nav
-      className={`navbar navbar-expand-lg navbar-dark bg-dark ${animation_class}`}
+      className={`navbar navbar-expand-lg bg-transparent ${animation_class}`}
       role="navigation"
     >
       <div className="container">
@@ -18,7 +18,9 @@ const Navigation = ({ children, animation_class }) => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon">
+            <i class="fas fa-snowflake"></i>
+          </span>
         </button>
         <div className="collapse navbar-collapse" id="navbarResponsive">
           <ul className="navbar-nav">{children}</ul>
