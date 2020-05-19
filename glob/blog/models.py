@@ -34,10 +34,11 @@ class ImageSerializer(Field):
     def to_representation(self, value):
         return {
             "url": value.file.url,
-            "title": value.title, 
-            "width": value.width, 
-            "height": value.height, 
+            "title": value.title,
+            "width": value.width,
+            "height": value.height,
         }
+
 
 class BlogPeopleRelationship(Orderable, models.Model):
     """
@@ -68,15 +69,13 @@ class BlogPageTag(TaggedItemBase):
         "BlogPage", related_name="tagged_items", on_delete=models.CASCADE
     )
 
+
 @register_snippet
 class BlogCategory(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, max_length=80)
 
-    panels = [
-        FieldPanel('name'),
-        FieldPanel('slug'),
-    ]
+    panels = [FieldPanel("name"), FieldPanel("slug")]
 
     def __str__(self):
         return self.name
@@ -84,6 +83,7 @@ class BlogCategory(models.Model):
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
+
 
 class BlogPage(TranslatablePage):
     """
@@ -112,8 +112,7 @@ class BlogPage(TranslatablePage):
         auto_now_add=True, help_text="(automatic) created date"
     )
     content_panels = Page.content_panels + [
-        FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
-
+        FieldPanel("categories", widget=forms.CheckboxSelectMultiple),
         FieldPanel("introduction", classname="full"),
         ImageChooserPanel("image"),
         StreamFieldPanel("body"),
@@ -161,6 +160,7 @@ class BlogPage(TranslatablePage):
         return Comment.objects.filter_by_instance(
             object_id=self.id, content_type=TranslatablePage
         )
+
     @property
     def get_image(self):
         """

@@ -16,12 +16,44 @@ const createCard = (post) => {
   );
 };
 
-const renderAuthor = (authors) => {
+const renderAuthors = (authors) => {
+  return authors.map((author) => {
+    return (
+      <div className="author comments-area">
+        <div className="author comment-list">
+          <div className="single-comment justify-content-between d-flex">
+            <div className="user justify-content-between d-flex">
+              <div className="thumb">
+                <img className="blog-avatar" src={author.image} />
+              </div>
+              <div class="desc">
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex align-items-center">
+                    <h5>{author.name}</h5>
+                    <p class="date">{author.published_date}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  });
+};
+const renderTags = (tags) => {
   return (
-    <div class="blog-meta">
-      {authors.forEach((author) => {
-        <h5>{author}</h5>;
-      })}
+    <div className="tags">
+      <p>
+        Tagged with:{" "}
+        {tags.map((tag) => {
+          return (
+            <a href="#">
+              <span className="badge badge-secondary">{tag}</span>
+            </a>
+          );
+        })}
+      </p>
     </div>
   );
 };
@@ -42,29 +74,8 @@ const createCardContent = (post) => {
         <div dangerouslySetInnerHTML={{ __html: post.body }} />
       </div>
       <div className="blog-meta">
-        {post.authors.map((author) => {
-          return (
-            <div className="author comments-area">
-              <div className="author comment-list">
-                <div className="single-comment justify-content-between d-flex">
-                  <div className="user justify-content-between d-flex">
-                    <div className="thumb">
-                      <img className="blog-avatar" src={author.image} />
-                    </div>
-                    <div class="desc">
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex align-items-center">
-                          <h5>{author.name}</h5>
-                          <p class="date">{author.published_date}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+        {renderAuthors(post.authors)}
+        {renderTags(post.tags)}
       </div>
     </div>
   );

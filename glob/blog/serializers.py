@@ -8,6 +8,7 @@ class PostPageSerializer(serializers.ModelSerializer):
     authors = serializers.SerializerMethodField()
     parent_page = serializers.SerializerMethodField()
     body = serializers.SerializerMethodField()
+    tags = serializers.SerializerMethodField()
 
     class Meta:
         model = BlogPage
@@ -20,7 +21,11 @@ class PostPageSerializer(serializers.ModelSerializer):
             "body",
             "introduction",
             "authors",
+            "tags",
         )
+
+    def get_tags(self, obj):
+        return [tag.name for tag in obj.tags.all()]
 
     def get_authors(self, obj):
         return [
