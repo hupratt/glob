@@ -42,7 +42,7 @@ class PostPageSerializer(serializers.ModelSerializer):
                 "content": comment.content,
                 "timestamp": comment.timestamp,
                 "content_type": comment.content_type.name,
-                "user_id": comment.user.id,
+                "user_fullname": f"{comment.user.first_name} {comment.user.last_name}",
                 # thumbnail lives at comment.user.thumb_image but need to parse it first
                 "user_image": comment.user.image.file.url,
             }

@@ -84,13 +84,13 @@ const renderComments = (comments, times_commented) => {
                   <img src={comment.user_image} class="blog-avatar" />
                 </div>
                 <div class="desc">
-                  <p class="comment">{comment.content}</p>
-                  <div class="d-flex justify-content-between">
+                  <div class="d-flex  justify-content-between">
+                    <p class="comment">{comment.content}</p>
                     <div class="d-flex align-items-center">
                       <h5>
-                        <a href="#">{comment.user_id}</a>
+                        <a href="#">{comment.user_fullname}</a>
                       </h5>
-                      <p class="date">comment.created </p>
+                      <p class="date">{comment.timestamp} </p>
                     </div>
                     <div class="reply-btn">
                       <a href="#" class="btn-reply text-uppercase">

@@ -28,7 +28,7 @@
 .authors-area h5,
 .comments-area h5 {
   font-size: 16px;
-  margin-bottom: 0px;
+  margin: unset;
 }
 
 /* line 1341, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
