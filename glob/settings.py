@@ -105,7 +105,7 @@ ROOT_URLCONF = "glob.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["glob/templates"],
+        "DIRS": [os.path.join(PROJECT_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -131,9 +131,6 @@ WSGI_APPLICATION = "glob.wsgi.application"
 
 # BASE_URL required for notification emails
 BASE_URL = "http://localhost:3000"
-
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 # Database
 
@@ -191,9 +188,6 @@ STATIC_URL = "/static/"
 
 MEDIA_ROOT = os.path.join(PROJECT_DIR, "media")
 MEDIA_URL = "/media/"
-
-# Template directory setting
-TEMPLATE_DIRS = (os.path.join(PROJECT_DIR, "templates"),)
 
 # Override in local settings or replace with your own key. Please don't use our demo key in production!
 GOOGLE_MAP_API_KEY = "AIzaSyD31CT9P9KxvNUJOwDq2kcFEIG8ADgaFgw"
