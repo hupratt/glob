@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import BlogPage, BlogCategory, BlogPageTag, Tag
 from rest_framework.fields import Field
 from wagtail.core.templatetags.wagtailcore_tags import richtext
-from .draft_js_utils import richtext_to_html
+# from .draft_js_utils import richtext_to_html
 
 
 class PostPageSerializer(serializers.ModelSerializer):
@@ -32,8 +32,8 @@ class PostPageSerializer(serializers.ModelSerializer):
 
     def get_rich_text(self, obj):
         richtext = obj.body.__html__()
-        markdown = richtext_to_html(richtext)
-        return markdown
+        # markdown = richtext_to_html(richtext)
+        return richtext
 
 
 class CategorySerializer(serializers.ModelSerializer):
