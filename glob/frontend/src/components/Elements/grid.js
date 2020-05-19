@@ -19,7 +19,7 @@ const createCard = (post) => {
 const renderAuthors = (authors) => {
   return authors.map((author) => {
     return (
-      <div className="author comments-area">
+      <div className="authors-area">
         <div className="author comment-list">
           <div className="single-comment justify-content-between d-flex">
             <div className="user justify-content-between d-flex">
@@ -57,6 +57,75 @@ const renderTags = (tags) => {
     </div>
   );
 };
+
+const renderComments = (comments, times_commented) => {
+  return (
+    <div class="comments-area">
+      <h4>{times_commented} Comments</h4>
+
+      <form action="/addcomment/" method="post" enctype="multipart/form-data">
+        <label for="comment-form-content">Comment this</label>
+        <input type="hidden" name="obj" value="{{ blog.pk }}" />
+        <input
+          type="text"
+          id="comment-form-content"
+          name="content"
+          required="required"
+        />
+        <button>Submit</button>
+      </form>
+
+      <div class="comment-list">
+        {comments.map((comment) => {
+          return (
+            <div class="single-comment justify-content-between d-flex">
+              <div class="user justify-content-between d-flex">
+                <div class="thumb">
+                  <img src={comment.user_image} class="blog-avatar" />
+                </div>
+                <div class="desc">
+                  <p class="comment">{comment.content}</p>
+                  <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                      <h5>
+                        <a href="#">{comment.user_id}</a>
+                      </h5>
+                      <p class="date">comment.created </p>
+                    </div>
+                    <div class="reply-btn">
+                      <a href="#" class="btn-reply text-uppercase">
+                        reply
+                      </a>
+                      <form
+                        action="/addcommentofcomment/"
+                        method="post"
+                        enctype="multipart/form-data"
+                      >
+                        <label for="comment-form-content">Comment this</label>
+                        <input
+                          type="hidden"
+                          name="obj"
+                          value="{{ comment.pk }}"
+                        />
+                        <input
+                          type="text"
+                          id="comment-form-content"
+                          name="content"
+                          required="required"
+                        />
+                        <button>Submit</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 const createCardContent = (post) => {
   return (
     <div className="content__item" key={post.id}>
@@ -76,6 +145,7 @@ const createCardContent = (post) => {
       <div className="blog-meta">
         {renderAuthors(post.authors)}
         {renderTags(post.tags)}
+        {renderComments(post.comments, post.times_commented)}
       </div>
     </div>
   );

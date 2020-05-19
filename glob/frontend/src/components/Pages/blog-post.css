@@ -1,3 +1,4 @@
+.authors-area,
 .comments-area {
   background: transparent;
   border-top: 1px solid #eee;
@@ -10,65 +11,77 @@
 
 @media (max-width: 414px) {
   /* line 1314, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
+  .authors-area,
   .comments-area {
     padding: 50px 8px;
   }
 }
 
 /* line 1325, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
+.authors-area h4,
 .comments-area h4 {
   margin-bottom: 35px;
   font-size: 18px;
 }
 
 /* line 1332, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
+.authors-area h5,
 .comments-area h5 {
   font-size: 16px;
   margin-bottom: 0px;
 }
 
 /* line 1341, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
+.authors-area .comment-list,
 .comments-area .comment-list {
   padding-bottom: 48px;
 }
 
 /* line 1344, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
+.authors-area .comment-list:last-child,
 .comments-area .comment-list:last-child {
   padding-bottom: 0px;
 }
 
 /* line 1348, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
+.authors-area .comment-list.left-padding,
 .comments-area .comment-list.left-padding {
   padding-left: 25px;
 }
 
 @media (max-width: 413px) {
   /* line 1354, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
+  .authors-area .comment-list .single-comment h5,
   .comments-area .comment-list .single-comment h5 {
     font-size: 12px;
   }
   /* line 1358, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
+  .authors-area .comment-list .single-comment .date,
   .comments-area .comment-list .single-comment .date {
     font-size: 11px;
   }
   /* line 1362, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
+  .authors-area .comment-list .single-comment .comment,
   .comments-area .comment-list .single-comment .comment {
     font-size: 10px;
   }
 }
 
 /* line 1369, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
+.authors-area .thumb,
 .comments-area .thumb {
   margin-right: 20px;
 }
 
 /* line 1372, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
+.authors-area .thumb img,
 .comments-area .thumb img {
   width: 50px;
   border-radius: 50%;
 }
 
 /* line 1378, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
+.authors-area .date,
 .comments-area .date {
   font-size: 14px;
   color: #999999;
@@ -77,6 +90,7 @@
 }
 
 /* line 1385, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
+.authors-area .comment,
 .comments-area .comment {
   margin-bottom: 10px;
   color: #777777;
@@ -84,6 +98,7 @@
 }
 
 /* line 1391, ../../Arafath/CL/CL October/219. SEO/HTML/scss/_blog.scss */
+.authors-area .btn-reply,
 .comments-area .btn-reply {
   background-color: transparent;
   color: #888888;

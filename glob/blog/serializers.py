@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import BlogPage, BlogCategory, BlogPageTag, Tag
 from rest_framework.fields import Field
 from wagtail.core.templatetags.wagtailcore_tags import richtext
+from wagtail.images.api.fields import ImageRenditionField
 
 
 class PostPageSerializer(serializers.ModelSerializer):
@@ -9,6 +10,8 @@ class PostPageSerializer(serializers.ModelSerializer):
     parent_page = serializers.SerializerMethodField()
     body = serializers.SerializerMethodField()
     tags = serializers.SerializerMethodField()
+    comments = serializers.SerializerMethodField()
+    times_commented = serializers.SerializerMethodField()
 
     class Meta:
         model = BlogPage
@@ -22,7 +25,29 @@ class PostPageSerializer(serializers.ModelSerializer):
             "introduction",
             "authors",
             "tags",
+            "comments",
+            "times_commented",
         )
+
+    def get_times_commented(self, obj):
+        return obj.comments.count()
+
+    def get_comments(self, obj):
+        # if obj.id == 9:
+        #     import pdb
+
+        #     pdb.set_trace()
+        return [
+            {
+                "content": comment.content,
+                "timestamp": comment.timestamp,
+                "content_type": comment.content_type.name,
+                "user_id": comment.user.id,
+                # thumbnail lives at comment.user.thumb_image but need to parse it first
+                "user_image": comment.user.image.file.url,
+            }
+            for comment in obj.comments
+        ]
 
     def get_tags(self, obj):
         return [tag.name for tag in obj.tags.all()]
