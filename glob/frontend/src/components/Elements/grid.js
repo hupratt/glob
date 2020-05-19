@@ -20,30 +20,7 @@ const renderAuthor = (authors) => {
   return (
     <div class="blog-meta">
       {authors.forEach((author) => {
-        <div class="author comments-area">
-          <div class="author comment-list">
-            <div class="single-comment justify-content-between d-flex">
-              <div class="user justify-content-between d-flex">
-                <div class="thumb">
-                  <img class="blog-avatar" />
-                </div>
-                <div class="desc">
-                  <div class="d-flex justify-content-between">
-                    <div
-                      class="d-flex align-items-center"
-                      style="margin-top:5px;"
-                    >
-                      <h5>
-                        <a href="#">{author.first_name}</a>
-                      </h5>
-                      <p class="date"></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>;
+        <h5>{author}</h5>;
       })}
     </div>
   );
@@ -65,10 +42,6 @@ const createCardContent = (post) => {
         <div dangerouslySetInnerHTML={{ __html: post.body }} />
       </div>
       <div className="blog-meta">
-        {/* {post &&
-          post.authors &&
-          post.authors.map((author) => {
-            return ( */}
         <div className="author comments-area">
           <div className="author comment-list">
             <div className="single-comment justify-content-between d-flex">
@@ -76,25 +49,11 @@ const createCardContent = (post) => {
                 <div className="thumb">
                   <img className="blog-avatar" />
                 </div>
-                <div className="desc">
-                  <div className="d-flex justify-content-between">
-                    <div
-                      className="d-flex align-items-center"
-                      style="margin-top:5px;"
-                    >
-                      <h5>
-                        <a href="#">author</a>
-                      </h5>
-                      <p className="date"></p>
-                    </div>
-                  </div>
-                </div>
               </div>
+              <h5>{post.authors}</h5>
             </div>
           </div>
         </div>
-        {/* );
-          })} */}
       </div>
     </div>
   );
