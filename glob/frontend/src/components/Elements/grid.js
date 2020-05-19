@@ -49,10 +49,17 @@ const createCardContent = (post) => {
                 <div className="single-comment justify-content-between d-flex">
                   <div className="user justify-content-between d-flex">
                     <div className="thumb">
-                      <img className="blog-avatar" />
+                      <img className="blog-avatar" src={author.image} />
+                    </div>
+                    <div class="desc">
+                      <div class="d-flex justify-content-between">
+                        <div class="d-flex align-items-center">
+                          <h5>{author.name}</h5>
+                          <p class="date">{author.published_date}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <h5>{author}</h5>
                 </div>
               </div>
             </div>

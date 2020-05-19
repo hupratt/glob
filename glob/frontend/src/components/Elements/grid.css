@@ -306,3 +306,7 @@
   display: -ms-flexbox !important;
   display: flex !important;
 }
+
+.desc {
+  display: flex;
+}

@@ -1,7 +1,7 @@
 .comments-area {
   background: transparent;
   border-top: 1px solid #eee;
-  padding: 45px 0;
+  padding: 25px 0;
   margin-top: 50px;
   text-align: justify;
   max-width: 1000px;
@@ -72,7 +72,7 @@
 .comments-area .date {
   font-size: 14px;
   color: #999999;
-  margin-bottom: 0;
+  margin-top: 3px;
   margin-left: 20px;
 }
 
@@ -204,11 +204,9 @@
   text-align: justify;
   max-width: 1000px;
   margin: 0 auto;
+  margin-top: 40px;
 }
 
 .reply-btn {
   margin-top: 5px;
-}
-.date {
-  margin-top: 9.5px;
 }

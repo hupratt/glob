@@ -23,7 +23,14 @@ class PostPageSerializer(serializers.ModelSerializer):
         )
 
     def get_authors(self, obj):
-        return [f"{author.first_name} {author.last_name}" for author in obj.authors()]
+        return [
+            {
+                "name": f"{author.first_name} {author.last_name}",
+                "image": f"{author.image.file.url}",
+                "published_date": obj.date_published,
+            }
+            for author in obj.authors()
+        ]
 
     def get_parent_page(self, obj):
         return obj.get_parent().slug
