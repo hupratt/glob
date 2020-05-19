@@ -42,18 +42,22 @@ const createCardContent = (post) => {
         <div dangerouslySetInnerHTML={{ __html: post.body }} />
       </div>
       <div className="blog-meta">
-        <div className="author comments-area">
-          <div className="author comment-list">
-            <div className="single-comment justify-content-between d-flex">
-              <div className="user justify-content-between d-flex">
-                <div className="thumb">
-                  <img className="blog-avatar" />
+        {post.authors.map((author) => {
+          return (
+            <div className="author comments-area">
+              <div className="author comment-list">
+                <div className="single-comment justify-content-between d-flex">
+                  <div className="user justify-content-between d-flex">
+                    <div className="thumb">
+                      <img className="blog-avatar" />
+                    </div>
+                  </div>
+                  <h5>{author}</h5>
                 </div>
               </div>
-              <h5>{post.authors}</h5>
             </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );
