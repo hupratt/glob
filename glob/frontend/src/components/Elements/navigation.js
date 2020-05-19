@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./navigation.css";
+import LanguageSelectionWithTrans from "./languageselector";
 
 const Navigation = ({ children, animation_class }) => {
   return (
@@ -25,6 +26,7 @@ const Navigation = ({ children, animation_class }) => {
         <div className="collapse navbar-collapse" id="navbarResponsive">
           <ul className="navbar-nav">{children}</ul>
         </div>
+        <LanguageSelectionWithTrans />
       </div>
     </nav>
   );

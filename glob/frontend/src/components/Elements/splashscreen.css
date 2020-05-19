@@ -154,8 +154,7 @@ a:focus {
 
 /* Buttons */
 .btn {
-  background: #6c757d;
-  color: white !important;
+  background: var(--grid-item-bg);
   color: inherit;
   border: 0;
   margin: 0;
@@ -177,8 +176,8 @@ a:focus {
 }
 
 .btn:not([disabled]):hover {
-  background: #666c7b;
-  color: #fff;
+  background: var(--color-bg);
+  color: inherit;
 }
 
 .btn:focus {

@@ -17,7 +17,8 @@ class PostListView(ListAPIView):
         return self.list(request, *args, **kwargs)
 
     def get_queryset(self):
-        queryset = BlogPage.objects.all()
+        # Same as doing queryset = BlogPage.objects.all().filter(live=True)
+        queryset = BlogPage.objects.live()
         category = self.request.query_params.get("category", None)
         tag = self.request.query_params.get("tag", None)
         if category is not None and category != "*" and category != "":

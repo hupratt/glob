@@ -26,4 +26,10 @@
 
 .badge-secondary {
   padding: 7px;
+  background-color: var(--grid-item-bg);
+  color: var(--color-link);
+}
+
+.badge-secondary:hover {
+  background-color: #d7d7d7ad;
 }
