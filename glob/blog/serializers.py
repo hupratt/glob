@@ -2,13 +2,12 @@ from rest_framework import serializers
 from .models import BlogPage, BlogCategory, BlogPageTag, Tag
 from rest_framework.fields import Field
 from wagtail.core.templatetags.wagtailcore_tags import richtext
-# from .draft_js_utils import richtext_to_html
 
 
 class PostPageSerializer(serializers.ModelSerializer):
-    string_authors = serializers.SerializerMethodField()
+    authors = serializers.SerializerMethodField()
     parent_page = serializers.SerializerMethodField()
-    rich_text = serializers.SerializerMethodField()
+    body = serializers.SerializerMethodField()
 
     class Meta:
         model = BlogPage
@@ -18,22 +17,19 @@ class PostPageSerializer(serializers.ModelSerializer):
             "title",
             "get_image",
             "parent_page",
-            # "body",
+            "body",
             "introduction",
-            "rich_text",
-            "string_authors",
+            "authors",
         )
 
-    def get_string_authors(self, obj):
+    def get_authors(self, obj):
         return [f"{author.first_name} {author.last_name}" for author in obj.authors()]
 
     def get_parent_page(self, obj):
         return obj.get_parent().slug
 
-    def get_rich_text(self, obj):
-        richtext = obj.body.__html__()
-        # markdown = richtext_to_html(richtext)
-        return richtext
+    def get_body(self, obj):
+        return obj.body.__html__()
 
 
 class CategorySerializer(serializers.ModelSerializer):

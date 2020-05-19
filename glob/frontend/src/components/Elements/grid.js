@@ -62,9 +62,40 @@ const createCardContent = (post) => {
       <h3 className="content__item-subtitle">{post.introduction}</h3>
       <div className="content__item-text">
         {/* <draftJsEditor body={post.body} /> */}
-        <div dangerouslySetInnerHTML={{ __html: post.rich_text }} />
+        <div dangerouslySetInnerHTML={{ __html: post.body }} />
       </div>
-      {renderAuthor(post.string_authors)}
+      <div className="blog-meta">
+        {/* {post &&
+          post.authors &&
+          post.authors.map((author) => {
+            return ( */}
+        <div className="author comments-area">
+          <div className="author comment-list">
+            <div className="single-comment justify-content-between d-flex">
+              <div className="user justify-content-between d-flex">
+                <div className="thumb">
+                  <img className="blog-avatar" />
+                </div>
+                <div className="desc">
+                  <div className="d-flex justify-content-between">
+                    <div
+                      className="d-flex align-items-center"
+                      style="margin-top:5px;"
+                    >
+                      <h5>
+                        <a href="#">author</a>
+                      </h5>
+                      <p className="date"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* );
+          })} */}
+      </div>
     </div>
   );
 };
