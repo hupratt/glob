@@ -14,7 +14,7 @@ from django.utils.translation import get_language
 
 def acronym_to_id(argument):
     switcher = {"en": 1, "de": 2, "fr": 3, "pt": 4}
-    return switcher.get(argument, "Index is not registered in the controller")
+    return switcher.get(argument, 1)
 
 
 class PostListView(ListAPIView):
