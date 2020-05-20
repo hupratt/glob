@@ -19,11 +19,10 @@ import "./blog-home.css";
 import { withTranslation } from "react-i18next";
 
 class BlogHome extends React.Component {
-  state = { language: null };
+  state = { language: null, posts: [] };
   componentDidMount() {
     this.props.fetchCategories(categoryListURL);
     this.props.fetchTags(tagsListURL);
-    this.props.fetchPosts(postListURL(), this.props.i18n.language);
   }
 
   componentDidUpdate(prevProps) {
@@ -31,15 +30,24 @@ class BlogHome extends React.Component {
       i18n: { language },
       location: { search, pathname },
     } = this.props;
-    if (
-      prevProps.location.search !== search ||
-      prevProps.location.pathname !== pathname ||
-      prevProps.i18n.language !== this.state.language
-    ) {
+    if (!this.state.language && language !== this.state.language) {
+      this.setState({ language });
+      this.clearFilters();
+      console.log(
+        `init: fetching from blog home posts: ${this.props.posts.length} lang: ${language}`
+      );
+    } else if (language !== this.state.language) {
+      this.setState({ language });
+      this.clearFilters();
+      console.log(
+        `language changed: fetching from blog home posts: ${this.props.posts.length} lang: ${language}`
+      );
+    } else if (prevProps.location.search !== search) {
       const endpoint = `${base}/api/blog/${search}`;
       this.props.fetchPosts(endpoint, language);
-      this.setState({ language });
-      console.log("fetching from blog home", this.props.posts);
+      console.log(
+        `tag or category selected: fetching from blog home ${endpoint} posts: ${this.props.posts.length} lang: ${language}`
+      );
     }
   }
 

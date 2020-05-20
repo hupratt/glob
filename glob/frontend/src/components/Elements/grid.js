@@ -153,7 +153,6 @@ const createCardContent = (post) => {
 };
 
 class Grid extends React.Component {
-  state = { language: null };
   constructor(props) {
     super(props);
     this.state = {
@@ -170,11 +169,9 @@ class Grid extends React.Component {
       posts,
       i18n: { language },
     } = this.props;
-
     if (
       (posts.length > 0 && this.state.scriptIsNotMounted) ||
-      prevProps.posts !== posts ||
-      prevProps.i18n.language !== this.state.language
+      prevProps.posts !== posts
     ) {
       this.setState(
         {
@@ -191,8 +188,6 @@ class Grid extends React.Component {
           script2.async = false;
           script2.src = "/static/js/prism.js";
           document.body.appendChild(script2);
-          this.setState({ language });
-          console.log("fetching from grid", posts);
         }
       );
     }

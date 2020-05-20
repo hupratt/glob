@@ -250,6 +250,6 @@ class BlogIndexPage(RoutablePageMixin, TranslatablePage):
 
 
 @register_snippet
-class Tag(TaggitTag): 
+class Tag(TaggitTag): # type: ignore
     class Meta:
         proxy = True
