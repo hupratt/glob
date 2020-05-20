@@ -2,6 +2,7 @@ import React from "react";
 import draftJsEditor from "./draftJsEditor";
 import { Link } from "react-router-dom";
 import "./grid.css";
+import { withTranslation } from "react-i18next";
 
 const createCard = (post) => {
   return (
@@ -152,6 +153,7 @@ const createCardContent = (post) => {
 };
 
 class Grid extends React.Component {
+  state = { language: null };
   constructor(props) {
     super(props);
     this.state = {
@@ -164,10 +166,15 @@ class Grid extends React.Component {
   createCardsContent = (posts) => posts.map((post) => createCardContent(post));
 
   componentDidUpdate(prevProps) {
-    const { posts } = this.props;
+    const {
+      posts,
+      i18n: { language },
+    } = this.props;
+
     if (
       (posts.length > 0 && this.state.scriptIsNotMounted) ||
-      prevProps.posts !== posts
+      prevProps.posts !== posts ||
+      prevProps.i18n.language !== this.state.language
     ) {
       this.setState(
         {
@@ -184,6 +191,8 @@ class Grid extends React.Component {
           script2.async = false;
           script2.src = "/static/js/prism.js";
           document.body.appendChild(script2);
+          this.setState({ language });
+          console.log("fetching from grid", posts);
         }
       );
     }
@@ -208,4 +217,6 @@ class Grid extends React.Component {
   }
 }
 
-export default Grid;
+const GridWithTrans = withTranslation()(Grid);
+
+export default GridWithTrans;

@@ -1,3 +1,11 @@
 .flag-select__option__icon {
   margin-bottom: 9px;
 }
+
+.flag-select__options {
+  background-color: transparent;
+}
+
+.flag-select__option.has-label:hover {
+  background-color: rgba(0, 0, 0, 0.082) !important;
+}

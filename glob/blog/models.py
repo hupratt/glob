@@ -21,7 +21,7 @@ from wagtail.search import index
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from glob.base.blocks import BaseStreamBlock
-from wagtailtrans.models import TranslatablePage
+from wagtailtrans.models import TranslatablePage, TranslatableSiteRootPage
 from wagtail.api import APIField
 from rest_framework.fields import Field
 from taggit.models import Tag as TaggitTag
@@ -246,9 +246,10 @@ class BlogIndexPage(RoutablePageMixin, TranslatablePage):
             tags += post.get_tags
         tags = sorted(set(tags))
         return tags
+    subpage_types = ["BlogPage"]
 
 
 @register_snippet
-class Tag(TaggitTag):
+class Tag(TaggitTag): 
     class Meta:
         proxy = True

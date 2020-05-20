@@ -31,18 +31,19 @@ class LanguageSelection extends React.Component {
     switch (countryCode) {
       case "PT":
         this.props.i18n.changeLanguage("pt");
+        document.cookie = `django_language=pt`;
         break;
       case "FR":
         this.props.i18n.changeLanguage("fr");
-        break;
-      case "EN":
-        this.props.i18n.changeLanguage("en");
+        document.cookie = `django_language=fr`;
         break;
       case "DE":
         this.props.i18n.changeLanguage("de");
+        document.cookie = `django_language=de`;
         break;
       default:
         this.props.i18n.changeLanguage("en");
+        document.cookie = `django_language=en`;
     }
   };
   render() {

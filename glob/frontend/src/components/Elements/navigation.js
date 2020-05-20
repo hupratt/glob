@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./navigation.css";
 import LanguageSelectionWithTrans from "./languageselector";
 
-const Navigation = ({ children, animation_class }) => {
+const Navigation = ({ children, animation_class, lang, history }) => {
   return (
     <nav
       className={`navbar navbar-expand-lg bg-transparent ${animation_class}`}
@@ -26,7 +26,7 @@ const Navigation = ({ children, animation_class }) => {
         <div className="collapse navbar-collapse" id="navbarResponsive">
           <ul className="navbar-nav">{children}</ul>
         </div>
-        <LanguageSelectionWithTrans />
+        <LanguageSelectionWithTrans lang={lang} history={history} />
       </div>
     </nav>
   );

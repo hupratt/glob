@@ -1,11 +1,10 @@
 import React, { Component, Suspense } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { connect } from "react-redux";
-
+import { Redirect } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 import { CSSTransition } from "react-transition-group";
 import BlogHome from "./components/Pages/blog-home";
-import BlogPost from "./components/Pages/blog-post";
 import { Route } from "react-router-dom";
 import "../static/css/base.css";
 import "./App.css";
@@ -27,6 +26,7 @@ class App extends Component {
           {youtubeLoader()}
           <Router>
             <Route exact path="/" component={BlogHome} />
+            {/* <Route to="/:lang/" render={(props) => <BlogHome {...props} />} /> */}
           </Router>
         </Suspense>
       </React.Fragment>

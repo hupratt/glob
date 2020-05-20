@@ -15,34 +15,55 @@ import {
 } from "../../constants";
 import Grid from "../Elements/grid";
 import SplashScreen from "../Elements/splashscreen";
+import "./blog-home.css";
+import { withTranslation } from "react-i18next";
 
 class BlogHome extends React.Component {
+  state = { language: null };
   componentDidMount() {
     this.props.fetchCategories(categoryListURL);
     this.props.fetchTags(tagsListURL);
-    this.props.fetchPosts(postListURL());
+    this.props.fetchPosts(postListURL(), this.props.i18n.language);
   }
 
   componentDidUpdate(prevProps) {
+    const {
+      i18n: { language },
+      location: { search, pathname },
+    } = this.props;
     if (
-      prevProps.location.search !== this.props.location.search ||
-      prevProps.location.pathname !== this.props.location.pathname
+      prevProps.location.search !== search ||
+      prevProps.location.pathname !== pathname ||
+      prevProps.i18n.language !== this.state.language
     ) {
-      const endpoint = `${base}/api/blog/${this.props.location.search}`;
-      this.props.fetchPosts(endpoint);
+      const endpoint = `${base}/api/blog/${search}`;
+      this.props.fetchPosts(endpoint, language);
+      this.setState({ language });
+      console.log("fetching from blog home", this.props.posts);
     }
   }
 
   clearFilters = () => {
     this.props.history.push("/");
-    this.props.fetchPosts(postListURL());
+    this.props.fetchPosts(postListURL(), this.props.i18n.language);
   };
 
   render() {
-    const { posts, tags, categories, loading, animation_class } = this.props;
+    const {
+      posts,
+      tags,
+      categories,
+      loading,
+      animation_class,
+      history,
+    } = this.props;
     return (
       <React.Fragment>
-        <Navigation animation_class={animation_class}>
+        <Navigation
+          animation_class={animation_class}
+          lang={this.props.match.params.lang}
+          history={history}
+        >
           <SideBar
             categories={categories}
             tags={tags}
@@ -59,7 +80,8 @@ class BlogHome extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPosts: (url_endpoint) => dispatch(fetchPosts(url_endpoint)),
+    fetchPosts: (url_endpoint, lang) =>
+      dispatch(fetchPosts(url_endpoint, lang)),
     fetchCategories: (url_endpoint) => dispatch(fetchCategories(url_endpoint)),
     fetchTags: (url_endpoint) => dispatch(fetchTags(url_endpoint)),
   };
@@ -81,6 +103,8 @@ const mapStateToProps = (state) => {
 
 // BookDetailPage.propTypes = propTypes;
 
+const BlogHomeWithTrans = withTranslation()(BlogHome);
+
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(BlogHome)
+  connect(mapStateToProps, mapDispatchToProps)(BlogHomeWithTrans)
 );

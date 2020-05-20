@@ -1,12 +1,16 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
 
-export const fetchPosts = (url_endpoint) => {
+export const fetchPosts = (url_endpoint, lang) => {
   return (dispatch) => {
     dispatch({ type: actionTypes.LOADING_FETCH_POSTS });
-    console.log("running axios to fetch first the blog posts");
+    console.log("running axios to fetch first the blog posts", lang);
     axios
-      .get(url_endpoint)
+      .request({
+        url: url_endpoint,
+        method: "get",
+        headers: { "django-language": lang },
+      })
       .then((res) => {
         dispatch({
           type: actionTypes.FETCH_POSTS_SUCCESS,
