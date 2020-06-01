@@ -31,6 +31,7 @@ for (x in labels) {
 					sudo chown -R ubuntu:www-data $PROJECT
 					npm install
 					npm run build
+					sudo rm -rf node_modules
 					. env/bin/activate
 					echo 'which python are you running?'
 					which python
