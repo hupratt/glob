@@ -34,6 +34,9 @@ DEBUG = os.environ.get("DEBUG", False)
 
 ALLOWED_HOSTS = ["new.pythonbots.software"]
 
+if DEBUG:
+    ALLOWED_HOSTS += ["127.0.0.1", "localhost"]
+
 
 # Application definition
 

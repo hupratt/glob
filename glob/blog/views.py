@@ -5,7 +5,12 @@ from wagtailtrans.models import Language, TranslatablePage
 from wagtail.core.models import Site
 
 from .models import BlogPage, BlogCategory, BlogPageTag, Tag
-from .serializers import PostPageSerializer, CategorySerializer, TagSerializer
+from .serializers import (
+    PostPageSerializer,
+    CategorySerializer,
+    TagSerializer,
+    PostPageTagsSerializer,
+)
 from rest_framework import mixins
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
@@ -42,8 +47,8 @@ class PostListView(ListAPIView):
 
 
 class TagListView(ListAPIView):
-    serializer_class = TagSerializer
-    queryset = Tag.objects.all()
+    serializer_class = PostPageTagsSerializer
+    queryset = BlogPage.objects.live()
     permission_classes = (AllowAny,)
 
 

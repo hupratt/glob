@@ -4,14 +4,17 @@ import { postListURL } from "../../constants";
 
 const renderTags = (taglist) => {
   let elements = [];
-  taglist.map((tag) => {
-    let endpoint = postListURL(0, "", "", "", "", "", tag.slug);
-    endpoint = endpoint.slice(endpoint.indexOf("?limit"), endpoint.length);
-    elements.push(
-      <Link to={endpoint} key={tag.slug}>
-        <span className="badge badge-secondary">{tag.name}</span>
-      </Link>
-    );
+  taglist.map((blogpost) => {
+    blogpost.tags.forEach((tag) => {
+      console.log("tag.slug", tag.slug);
+      let endpoint = postListURL(0, "", "", "", "", "", tag.slug);
+      endpoint = endpoint.slice(endpoint.indexOf("?limit"), endpoint.length);
+      elements.push(
+        <Link to={endpoint} key={tag.slug}>
+          <span className="badge badge-secondary">{tag.name}</span>
+        </Link>
+      );
+    });
   });
   return elements;
 };

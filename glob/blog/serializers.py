@@ -5,6 +5,17 @@ from wagtail.core.templatetags.wagtailcore_tags import richtext
 from wagtail.images.api.fields import ImageRenditionField
 
 
+class PostPageTagsSerializer(serializers.ModelSerializer):
+    tags = serializers.SerializerMethodField()
+
+    class Meta:
+        model = BlogPage
+        fields = ("id", "tags")
+
+    def get_tags(self, obj):
+        return [{"name": tag.name, "slug": tag.slug} for tag in obj.tags.all()]
+
+
 class PostPageSerializer(serializers.ModelSerializer):
     authors = serializers.SerializerMethodField()
     parent_page = serializers.SerializerMethodField()

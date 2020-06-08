@@ -37,8 +37,8 @@ class SplashScreen extends React.Component {
             document.body.appendChild(script);
             setTimeout(() => {
               this.props.animation_complete();
-            }, 4000);
-          }, 2000);
+            }, 500);
+          }, 500);
         }
       );
     }

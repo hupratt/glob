@@ -150,7 +150,8 @@
   margin: 0;
   padding: 0 5vw;
   white-space: nowrap;
-  grid-area: 1 / 1 / 1 / 1;
+  padding: 2rem 0vw 2rem 0vw;
+  /* grid-area: 1 / 1 / 1 / 1; */
 }
 
 .content__item-title > span {

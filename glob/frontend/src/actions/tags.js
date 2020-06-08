@@ -8,6 +8,7 @@ export const fetchTags = (url_endpoint) => {
     axios
       .get(url_endpoint)
       .then((res) => {
+        console.log("Object.values(res.data)", Object.values(res.data));
         dispatch({
           type: actionTypes.FETCH_TAGS_SUCCESS,
           data: Object.values(res.data),
