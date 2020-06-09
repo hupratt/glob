@@ -287,7 +287,7 @@
   }
   .content__item-img {
     max-width: none;
-    height: calc(100vh - 6rem);
+    height: calc(70vh - 6rem);
   }
   .content__item-subtitle {
     max-width: 50%;
