@@ -185,9 +185,10 @@
   background: none;
   border: 0;
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
   cursor: pointer;
   color: var(--color-text);
+  padding: 20px 50px 50px 50px;
 }
 
 .content__close:focus {
