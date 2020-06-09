@@ -189,6 +189,7 @@ body {
   color: var(--color-text);
   background-color: #fff;
   background-color: var(--color-bg);
+  font-size: 22px;
 }
 
 a {
