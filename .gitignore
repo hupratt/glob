@@ -3,6 +3,7 @@
 *.log
 *.swp
 *.retry
+*.bak
 .env
 *~
 /logs

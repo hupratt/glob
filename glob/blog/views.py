@@ -18,7 +18,7 @@ from django.utils.translation import get_language
 
 
 def acronym_to_id(argument):
-    switcher = {"en": 1, "de": 2, "fr": 3, "pt": 4}
+    switcher = {"en": 1, "de": 4, "fr": 2, "pt": 3}
     return switcher.get(argument, 1)
 
 
@@ -36,6 +36,9 @@ class PostListView(ListAPIView):
         queryset = BlogPage.objects.all().filter(live=True)
         lang = self.request.headers.get("django_language", get_language())
         queryset = queryset.filter(language=acronym_to_id(lang))
+        # import pdb
+
+        # pdb.set_trace()
 
         category = self.request.query_params.get("category", None)
         tag = self.request.query_params.get("tag", None)
