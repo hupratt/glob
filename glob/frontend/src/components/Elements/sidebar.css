@@ -10,6 +10,7 @@
   height: 100vh;
   z-index: 1;
   transition: width 2s;
+  overflow: auto;
 }
 
 .blog-sidebar.show {
