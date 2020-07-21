@@ -64,7 +64,7 @@ ujson==1.35
 Unidecode==1.1.1
 urllib3==1.24.3
 urwid==2.1.0
-wagtail==2.9
+wagtail==2.9.3
 wagtailfontawesome==1.2.1
 wagtailmenus==2.8
 wagtailtrans==2.1
