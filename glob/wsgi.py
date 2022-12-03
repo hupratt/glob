@@ -13,8 +13,19 @@ import dotenv
 from django.core.wsgi import get_wsgi_application
 
 
-dotenv.read_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "glob.settings")
+if os.environ.get("DEBUG") == "True":
+    dotenv.read_dotenv(
+        os.path.join(
+            os.path.dirname(os.path.dirname(__file__)),
+            ".env.development",
+        )
+    )
+else:
+    dotenv.read_dotenv(
+        os.path.join(
+            os.path.dirname(os.path.dirname(__file__)), ".env"
+        )
+    )
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "glob.settings")
 
 application = get_wsgi_application()
