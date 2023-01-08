@@ -69,6 +69,7 @@ class PostPageSerializer(serializers.ModelSerializer):
                 "name": f"{author.first_name} {author.last_name}",
                 "image": f"{author.image.file.url}",
                 "published_date": obj.date_published,
+                "thumb_image": author.image.get_rendition("fill-50x50").url,
             }
             for author in obj.authors()
         ]

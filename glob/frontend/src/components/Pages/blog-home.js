@@ -80,7 +80,6 @@ class BlogHome extends React.Component {
         </Navigation>
         <SplashScreen loading={loading} />
         <Grid posts={posts} animation_class={animation_class} />
-        <Footer animation_class={animation_class} />
       </React.Fragment>
     );
   }

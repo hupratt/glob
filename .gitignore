@@ -20,4 +20,4 @@ __pycache__
 node_modules
 .mypy_cache/
 /glob/frontend/static/frontend/main.js
-static/
+**/static/*

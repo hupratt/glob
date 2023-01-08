@@ -22,4 +22,4 @@ export const postListURL = (
 ) =>
   `${apiURL}/blog/?limit=12&offset=${offset}&language=${language}&authors=${checkedItems}&category=${category}&price=${price}&text=${text}&tag=${tag}`;
 
-export const s3_base_url = `https://bookshop-images-f1492f08-f236-4a55-afb7-70ded209cb24.s3.eu-west-2.amazonaws.com/`;
+export const s3_base_url = `https://mappit-f1492f08-f236-4a55-afb7-70ded209cb25.s3.eu-west-2.amazonaws.com`;

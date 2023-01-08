@@ -25,7 +25,7 @@ const renderAuthors = (authors) => {
           <div className="single-comment justify-content-between d-flex">
             <div className="user justify-content-between d-flex">
               <div className="thumb">
-                <img className="blog-avatar" src={author.image} />
+                <img className="blog-avatar" src={author.thumb_image} />
               </div>
               <div class="desc">
                 <div class="d-flex justify-content-between">
@@ -206,7 +206,6 @@ class Grid extends React.Component {
           <button class="content__close">Close</button>
           <svg class="content__indicator icon icon--caret"></svg>
         </div>
-        }
       </React.Fragment>
     );
   }

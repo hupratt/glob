@@ -9,7 +9,7 @@ const heroArea = () => {
     <React.Fragment>
       <main style={{ height: "80vh" }}>
         <header className="codrops-header">
-          <h1 className="codrops-header__title">PythonBots</h1>
+          <h1 className="codrops-header__title">Mappit</h1>
         </header>
       </main>
     </React.Fragment>

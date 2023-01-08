@@ -13,10 +13,10 @@ from .views import add_comment, add_comment_of_comment, page_redirect
 from django.urls import include, path
 from glob.blog import urls as blog_urls
 from django.views.generic import TemplateView
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r"^$", page_redirect, name="index"),
-    # url(r"^$", page_redirect, name="index"),
     url(r"^django-admin/", admin.site.urls),
     url(r"^admin/", include(wagtailadmin_urls)),
     url(r"^documents/", include(wagtaildocs_urls)),
@@ -38,7 +38,8 @@ if settings.DEBUG:
     urlpatterns += [
         url(r"^test404/$", TemplateView.as_view(template_name="404.html")),
         url(r"^test500/$", TemplateView.as_view(template_name="500.html")),
-    ]
+        
+    ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # urlpatterns += i18n_patterns(
 #     # url(r"^$", page_redirect, name="index"),
