@@ -14,7 +14,7 @@ from glob.comment.models import Comment
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
 from wagtail.core.fields import StreamField
-from wagtail.core.models import Page, Orderable, PageManager, PageQuerySet
+from wagtail.core.models import Page, Orderable, PageManager  # , PageQuerySet
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.models import Image
 from wagtail.search import index
@@ -246,10 +246,11 @@ class BlogIndexPage(RoutablePageMixin, TranslatablePage):
             tags += post.get_tags
         tags = sorted(set(tags))
         return tags
+
     subpage_types = ["BlogPage"]
 
 
 @register_snippet
-class Tag(TaggitTag): # type: ignore
+class Tag(TaggitTag):  # type: ignore
     class Meta:
         proxy = True

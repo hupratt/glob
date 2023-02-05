@@ -3,7 +3,7 @@ from __future__ import absolute_import, unicode_literals
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext_lazy as _
 from glob.experiments.backends import db
 from wagtail.admin import messages
 from wagtail.core.models import Page
@@ -29,44 +29,52 @@ def experiment_report(request, experiment_id):
 
     report_by_variation = {}
     for variation in variations:
-        for variation_report in report['variations']:
-            if variation_report['variation_pk'] == variation.pk:
-                if 'history' in variation_report:
-                    for history_entry in variation_report['history']:
-                        history_entry['conversion_rate'] = percentage(
-                            history_entry['completion_count'],
-                            history_entry['participant_count'],
+        for variation_report in report["variations"]:
+            if variation_report["variation_pk"] == variation.pk:
+                if "history" in variation_report:
+                    for history_entry in variation_report["history"]:
+                        history_entry["conversion_rate"] = percentage(
+                            history_entry["completion_count"],
+                            history_entry["participant_count"],
                         )
 
-                variation_report['total_conversion_rate'] = percentage(
-                    variation_report['total_completion_count'],
-                    variation_report['total_participant_count'],
+                variation_report["total_conversion_rate"] = percentage(
+                    variation_report["total_completion_count"],
+                    variation_report["total_participant_count"],
                 )
                 report_by_variation[variation] = variation_report
                 break
 
-    return render(request, 'experiments/report.html', {
-        'experiment': experiment,
-        'report_by_variation': report_by_variation,
-        'winning_variation': experiment.winning_variation if experiment.status == 'completed' else None,
-    })
+    return render(
+        request,
+        "experiments/report.html",
+        {
+            "experiment": experiment,
+            "report_by_variation": report_by_variation,
+            "winning_variation": experiment.winning_variation
+            if experiment.status == "completed"
+            else None,
+        },
+    )
 
 
 def select_winner(request, experiment_id, variation_id):
-    if not request.user.has_perm('experiments.change_experiment'):
+    if not request.user.has_perm("experiments.change_experiment"):
         raise PermissionDenied
     experiment = get_object_or_404(Experiment, pk=experiment_id)
     variation = get_object_or_404(Page, pk=variation_id)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         experiment.select_winner(variation)
 
         messages.success(
             request,
-            _("Page '{0}' has been selected as the winning variation.").format(variation.title),
+            _("Page '{0}' has been selected as the winning variation.").format(
+                variation.title
+            ),
         )
 
-    return redirect('experiments:report', experiment.pk)
+    return redirect("experiments:report", experiment.pk)
 
 
 def preview_for_report(request, experiment_id, page_id):

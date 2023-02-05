@@ -5,15 +5,15 @@ from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.shortcuts import render, get_object_or_404, redirect
-from wagtail.core.models import Page, Orderable, PageManager, PageQuerySet
+from wagtail.core.models import Page, Orderable, PageManager  # , PageQuerySet
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, StreamFieldPanel
 from wagtailtrans.models import TranslatablePage, Page
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from modelcluster.fields import ParentalKey
 
 
-class CustomQuerySet(PageQuerySet):
-    pass
+# class CustomQuerySet(PageQuerySet):
+#     pass
 
 
 class CommentManager(PageManager):

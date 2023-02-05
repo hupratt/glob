@@ -13,27 +13,36 @@ from wagtail.admin.edit_handlers import FieldPanel, PageChooserPanel, InlinePane
 from wagtail.core.models import Orderable
 
 
-
 class Experiment(ClusterableModel):
     STATUS_CHOICES = [
-        ('draft', "Draft"),
-        ('live', "Live"),
-        ('completed', "Completed"),
+        ("draft", "Draft"),
+        ("live", "Live"),
+        ("completed", "Completed"),
     ]
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
-    control_page = models.ForeignKey('wagtailcore.Page', related_name='+', on_delete=models.CASCADE)
-    goal = models.ForeignKey('wagtailcore.Page', related_name='+', on_delete=models.SET_NULL, null=True, blank=True)
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
-    winning_variation = models.ForeignKey('wagtailcore.Page', related_name='+', on_delete=models.SET_NULL, null=True)
+    control_page = models.ForeignKey(
+        "wagtailcore.Page", related_name="+", on_delete=models.CASCADE
+    )
+    goal = models.ForeignKey(
+        "wagtailcore.Page",
+        related_name="+",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+    )
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="draft")
+    winning_variation = models.ForeignKey(
+        "wagtailcore.Page", related_name="+", on_delete=models.SET_NULL, null=True
+    )
 
     panels = [
-        FieldPanel('name'),
-        FieldPanel('slug'),
-        PageChooserPanel('control_page'),
-        InlinePanel('alternatives', label="Alternatives"),
-        PageChooserPanel('goal'),
-        FieldPanel('status'),
+        FieldPanel("name"),
+        FieldPanel("slug"),
+        PageChooserPanel("control_page"),
+        InlinePanel("alternatives", label="Alternatives"),
+        PageChooserPanel("goal"),
+        FieldPanel("status"),
     ]
 
     def __init__(self, *args, **kwargs):
@@ -44,7 +53,7 @@ class Experiment(ClusterableModel):
         # For any alternative pages that are unpublished, copy the latest draft revision
         # to the main table (with is_live=False) so that the revision shown as an alternative
         # is not an out-of-date one
-        for alternative in self.alternatives.select_related('page'):
+        for alternative in self.alternatives.select_related("page"):
             if not alternative.page.live:
                 revision = alternative.page.get_latest_revision_as_page()
                 revision.live = False
@@ -52,7 +61,9 @@ class Experiment(ClusterableModel):
                 revision.save()
 
     def get_variations(self):
-        return [self.control_page] + [alt.page for alt in self.alternatives.select_related('page')]
+        return [self.control_page] + [
+            alt.page for alt in self.alternatives.select_related("page")
+        ]
 
     def get_variation_for_user(self, user_id):
         variations = self.get_variations()
@@ -60,9 +71,11 @@ class Experiment(ClusterableModel):
         # choose uniformly from variations, based on a hash of user_id and experiment.slug
         # most WTF selection process ever
         hash_input = "{0}.{1}".format(self.slug, user_id)
-        hash_str = sha1(hash_input.encode('utf-8')).hexdigest()[:7]
+        hash_str = sha1(hash_input.encode("utf-8")).hexdigest()[:7]
         variation_index = int(hash_str, 16) % len(variations)
-        import pdb; pdb.set_trace()
+        import pdb
+
+        pdb.set_trace()
         return variations[variation_index]
 
     def start_experiment_for_user(self, user_id, request):
@@ -79,7 +92,7 @@ class Experiment(ClusterableModel):
 
     def select_winner(self, variation):
         self.winning_variation = variation
-        self.status = 'completed'
+        self.status = "completed"
         self.save()
 
     def __str__(self):
@@ -87,11 +100,15 @@ class Experiment(ClusterableModel):
 
 
 class Alternative(Orderable):
-    experiment = ParentalKey(Experiment, related_name='alternatives', on_delete=models.CASCADE)
-    page = models.ForeignKey('wagtailcore.Page', related_name='+', on_delete=models.CASCADE)
+    experiment = ParentalKey(
+        Experiment, related_name="alternatives", on_delete=models.CASCADE
+    )
+    page = models.ForeignKey(
+        "wagtailcore.Page", related_name="+", on_delete=models.CASCADE
+    )
 
     panels = [
-        PageChooserPanel('page'),
+        PageChooserPanel("page"),
     ]
 
 
@@ -99,13 +116,18 @@ class ExperimentHistory(models.Model):
     """
     Records the number of participants and completions on a given day for a given variation of an experiment
     """
-    experiment = models.ForeignKey(Experiment, related_name='history', on_delete=models.CASCADE)
+
+    experiment = models.ForeignKey(
+        Experiment, related_name="history", on_delete=models.CASCADE
+    )
     date = models.DateField()
-    variation = models.ForeignKey('wagtailcore.Page', related_name='+', on_delete=models.CASCADE)
+    variation = models.ForeignKey(
+        "wagtailcore.Page", related_name="+", on_delete=models.CASCADE
+    )
     participant_count = models.PositiveIntegerField(default=0)
     completion_count = models.PositiveIntegerField(default=0)
 
     class Meta:
         unique_together = [
-            ('experiment', 'date', 'variation'),
+            ("experiment", "date", "variation"),
         ]
