@@ -33,7 +33,7 @@
     "node": "v19.5.0"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.2",
     "bootstrap": "^4.2.1",
     "draft-js": "^0.11.5",
     "i18next": "^19.4.1",
