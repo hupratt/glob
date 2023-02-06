@@ -3,10 +3,10 @@ const Dotenv = require("dotenv-webpack");
 
 module.exports = {
     watch: true,
-    entry: "./glob/frontend/src/index.js",
+    entry: "./makita/frontend/src/index.js",
     output: {
         filename: "main.js",
-        path: path.resolve(__dirname, "glob/frontend/static/frontend")
+        path: path.resolve(__dirname, "makita/static/frontend")
     },
     module: {
         rules: [
