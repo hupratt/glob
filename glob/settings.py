@@ -139,7 +139,7 @@ BASE_URL = "http://localhost:3000"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "glob",
+        "NAME": "makita",
         "USER": os.environ.get("dbuser"),
         "PASSWORD": os.environ.get("dbpassword"),
         "HOST": os.environ.get("hostip"),
