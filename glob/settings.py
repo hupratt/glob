@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", False)
 
-ALLOWED_HOSTS = ["blog.craftstudios.shop"]
+ALLOWED_HOSTS = ["blog.craftstudios.shop", "blog.bitwcmd.duckdns.org"]
 
 if DEBUG:
     ALLOWED_HOSTS += ["127.0.0.1", "localhost"]
@@ -278,4 +278,5 @@ CORS_ORIGIN_WHITELIST = (
     "http://127.0.0.1:8000",
     "http://localhost:3000",
     "https://new.craftstudios.eu",
+    "https://mappit-f1492f08-f236-4a55-afb7-70ded209cb25.s3.eu-west-2.amazonaws.com",
 )
